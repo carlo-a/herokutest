@@ -3,140 +3,140 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Painter | HUD+</title>
     <!-- FAVICON -->
-    <link rel="apple-touch-icon" sizes="57x57" href="../resources/assets/icon/perf.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="../resources/assets/icon/perf.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="../resources/assets/icon/perf.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="../resources/assets/icon/perf.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="../resources/assets/icon/perf.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="../resources/assets/icon/perf.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="../resources/assets/icon/perf.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="../resources/assets/icon/perf.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="../resources/assets/icon/perf.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="../resources/assets/icon/perf.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../resources/assets/icon/perf.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="../resources/assets/icon/perf.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../resources/assets/icon/perf.png">
-    <link rel="manifest" href="../resources/assets/images/favicon/manifest.json">
+    <link rel="apple-touch-icon" sizes="57x57" href="assets/icon/perf.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="assets/icon/perf.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/icon/perf.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/icon/perf.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/icon/perf.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="assets/icon/perf.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/icon/perf.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icon/perf.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icon/perf.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/icon/perf.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icon/perf.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/icon/perf.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icon/perf.png">
+    <link rel="manifest" href="assets/images/favicon/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="../resources/assets/icon/perf.png">
+    <meta name="msapplication-TileImage" content="assets/icon/perf.png">
     <meta name="theme-color" content="#ffffff">
 
     <!-- CUSTOM CSS-->
-    <link rel="stylesheet" href="../resources/assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 
     <!-- Angular Material style sheet -->
-    <link rel="stylesheet" href="../resources/assets/css/material.css">
+    <link rel="stylesheet" href="assets/css/material.css">
 
     <!-- GLYPHICONS -->
-    <link rel="stylesheet" href="../resources/assets/css/glyphicon.css">
-    <link rel="stylesheet" href="../resources/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/glyphicon.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
 
     <!-- Jquery -->
-    <script src="../resources/assets/plugins/jquery/jquery-2.2.1.js"></script>
-    <script src="../resources/assets/plugins/jquery/jquery.min.js"></script>
-    <script src="../resources/assets/plugins/jquery/jquery-ui.js"></script>
+    <script src="assets/plugins/jquery/jquery-2.2.1.js"></script>
+    <script src="assets/plugins/jquery/jquery.min.js"></script>
+    <script src="assets/plugins/jquery/jquery-ui.js"></script>
 
     <!-- Angular Material requires Angular.js Libraries -->
-    <script src="../resources/assets/js/angular.min.js"></script>
-    <script src="../resources/assets/js/angular-animate.min.js"></script>
-    <script src="../resources/assets/js/angular-aria.min.js"></script>
-    <script src="../resources/assets/js/angular-messages.min.js"></script>
+    <script src="assets/js/angular.min.js"></script>
+    <script src="assets/js/angular-animate.min.js"></script>
+    <script src="assets/js/angular-aria.min.js"></script>
+    <script src="assets/js/angular-messages.min.js"></script>
 
     <!-- Color Picker -->
-    <link rel="stylesheet" href="../resources/assets/css/md-color-picker.css">
-    <script type="text/javascript" src="../resources/assets/js/tinycolor.js"></script>
-    <script type="text/javascript" src="../resources/assets/js/md-color-picker.js"></script>
+    <link rel="stylesheet" href="assets/css/md-color-picker.css">
+    <script type="text/javascript" src="assets/js/tinycolor.js"></script>
+    <script type="text/javascript" src="assets/js/md-color-picker.js"></script>
 
     <!-- Color Gradient Picker -->
     <!-- Dependency: Colorpicker -->
-    <link rel="stylesheet" href="../resources/assets/plugins/gradient-picker/color-picker/css/colorpicker.css">
-    <script type="text/javascript" src="../resources/assets/plugins/gradient-picker/color-picker/js/colorpicker.js"></script>
-    <script type="text/javascript" src="../resources/assets/plugins/gradient-picker/color-picker/js/eye.js"></script>
-    <script type="text/javascript" src="../resources/assets/plugins/gradient-picker/color-picker/js/utils.js"></script>
+    <link rel="stylesheet" href="assets/plugins/gradient-picker/color-picker/css/colorpicker.css">
+    <script type="text/javascript" src="assets/plugins/gradient-picker/color-picker/js/colorpicker.js"></script>
+    <script type="text/javascript" src="assets/plugins/gradient-picker/color-picker/js/eye.js"></script>
+    <script type="text/javascript" src="assets/plugins/gradient-picker/color-picker/js/utils.js"></script>
     <!-- Main -->
-    <link rel="stylesheet" href="../resources/assets/plugins/gradient-picker/jquery.gradientPicker.css">
-    <script type="text/javascript" src="../resources/assets/plugins/gradient-picker/jquery.gradientPicker.js"></script>
+    <link rel="stylesheet" href="assets/plugins/gradient-picker/jquery.gradientPicker.css">
+    <script type="text/javascript" src="assets/plugins/gradient-picker/jquery.gradientPicker.js"></script>
 
     <!-- Scrollbar -->
-    <link rel="stylesheet" href="../resources/assets/css/jquery.scrollbar.css">
-    <script src="../resources/assets/js/jquery.scrollbar.min.js"></script>
+    <link rel="stylesheet" href="assets/css/jquery.scrollbar.css">
+    <script src="assets/js/jquery.scrollbar.min.js"></script>
 
     <!-- Angular Material Library -->
-    <script src="../resources/assets/js/angular-material.min.js"></script>
+    <script src="assets/js/angular-material.min.js"></script>
 
     <!-- Highcharts JS -->
-    <script src="../resources/assets/js/highchart-custom.js"></script>
-    <script src="../resources/assets/plugins/highchart/highcharts-ng.js"></script>
+    <script src="assets/js/highchart-custom.js"></script>
+    <script src="assets/plugins/highchart/highcharts-ng.js"></script>
 
     <!-- LOADASH -->
-    <script src="../resources/assets/plugins/loadash/loadash.js"></script>
+    <script src="assets/plugins/loadash/loadash.js"></script>
 
     <!-- Components -->
-    <!--<link rel="stylesheet" href="../resources/assets/css/style.css">
-    <script src="/../resources/assets/js/script.js"></script>-->
+    <!--<link rel="stylesheet" href="assets/css/style.css">
+    <script src="/assets/js/script.js"></script>-->
     <!-- --------------------------------------- Shared Modules --------------------------------------- -->
     <!-- Content Manager / Configs and Providers -->
-    <script type="text/javascript" src="../resources/assets/angular/Shared/hudContentManager.js"></script>
+    <script type="text/javascript" src="angular/Shared/hudContentManager.js"></script>
     <!-- Directives -->
-    <script type="text/javascript" src="../resources/assets/angular/Shared/hudDirectives.js"></script>
+    <script type="text/javascript" src="angular/Shared/hudDirectives.js"></script>
     <!-- Factories -->
-    <script type="text/javascript" src="../resources/assets/angular/Shared/hudFactory.js"></script>
+    <script type="text/javascript" src="angular/Shared/hudFactory.js"></script>
     <!-- Main Application -->
-    <script type="text/javascript" src="../resources/assets/angular/main.js"></script>
+    <script type="text/javascript" src="angular/main.js"></script>
     <!-- --------------------------------------- Chart Widget Modules --------------------------------------- -->
     <!-- Line Family -->
-    <script type="text/javascript" src="../resources/assets/angular/Dialogs/Charts/LineFamily/lineFamily.js"></script>
+    <script type="text/javascript" src="angular/Dialogs/Charts/LineFamily/lineFamily.js"></script>
     <!-- Bar Family -->
-    <script type="text/javascript" src="../resources/assets/angular/Dialogs/Charts/BarFamily/barFamily.js"></script>
+    <script type="text/javascript" src="angular/Dialogs/Charts/BarFamily/barFamily.js"></script>
     <!-- Pie Family -->
-    <script type="text/javascript" src="../resources/assets/angular/Dialogs/Charts/PieFamily/pieFamily.js"></script>
+    <script type="text/javascript" src="angular/Dialogs/Charts/PieFamily/pieFamily.js"></script>
     <!-- Multiform Family -->
-    <script type="text/javascript" src="../resources/assets/angular/Dialogs/Charts/MultiformFamily/multiformFamily.js"></script>
-    <script type="text/javascript" src="../resources/assets/angular/Dialogs/Charts/MultiformFamily/multiformUpdate.js"></script>
+    <script type="text/javascript" src="angular/Dialogs/Charts/MultiformFamily/multiformFamily.js"></script>
+    <script type="text/javascript" src="angular/Dialogs/Charts/MultiformFamily/multiformUpdate.js"></script>
     <!-- Bubble Family -->
-    <script type="text/javascript" src="../resources/assets/angular/Dialogs/Charts/BubbleFamily/bubbleFamily.js"></script>
-    <script type="text/javascript" src="../resources/assets/angular/Dialogs/Charts/BubbleFamily/bubbleUpdate.js"></script>
+    <script type="text/javascript" src="angular/Dialogs/Charts/BubbleFamily/bubbleFamily.js"></script>
+    <script type="text/javascript" src="angular/Dialogs/Charts/BubbleFamily/bubbleUpdate.js"></script>
     <!-- --------------------------------------- Chart Widget Modules --------------------------------------- -->
     <!-- Map Family -->
-    <script type="text/javascript" src="../resources/assets/angular/Dialogs/Maps/mapFamily.js"></script>
+    <script type="text/javascript" src="angular/Dialogs/Maps/mapFamily.js"></script>
     <!-- --------------------------------------- HUD Play Modules --------------------------------------- -->
     <!-- Highcharts Play -->
-    <script type="text/javascript" src="../resources/assets/angular/Dialogs/HighchartsPlay/highchartsPlay.js"></script>
+    <script type="text/javascript" src="angular/Dialogs/HighchartsPlay/highchartsPlay.js"></script>
     <!-- KYLE'S CODE START -->
     <!-- Heatmap -->
-    <script type="text/javascript" src="../resources/assets/angular/Dialogs/Charts/Heatmap/heatmap.js"></script>
-    <script type="text/javascript" src="../resources/assets/angular/Dialogs/Charts/Heatmap/heatmapUpdate.js"></script>
+    <script type="text/javascript" src="angular/Dialogs/Charts/Heatmap/heatmap.js"></script>
+    <script type="text/javascript" src="angular/Dialogs/Charts/Heatmap/heatmapUpdate.js"></script>
     <!-- Text Family -->
-    <script type="text/javascript" src="../resources/assets/angular/Dialogs/Text/textFamilyUpdate.js"></script>
+    <script type="text/javascript" src="angular/Dialogs/Text/textFamilyUpdate.js"></script>
     <!-- KYLE'S CODE END -->
     <!-- BERV CODE START -->
     <!-- Table Family -->
-    <script type="text/javascript" src="../resources/assets/angular/Dialogs/Table/tableFamily.js"></script>
-    <script type="text/javascript" src="../resources/assets/angular/Dialogs/Table/tableUpdate.js"></script>
+    <script type="text/javascript" src="angular/Dialogs/Table/tableFamily.js"></script>
+    <script type="text/javascript" src="angular/Dialogs/Table/tableUpdate.js"></script>
     <!-- BERV CODE END -->
     <!-- ACEE CODE START -->
     <!-- Summernote Dependencies -->
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="../resources/assets/plugins/bootstrap/bootstrap.min.css">
-    <script src="../resources/assets/plugins/bootstrap/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="assets/plugins/bootstrap/bootstrap.min.css">
+    <script src="assets/plugins/bootstrap/bootstrap.min.js"></script>
 
     <!-- Summernote -->
-    <link rel="stylesheet" href="../resources/assets/plugins/summernote/summernote.css">
-    <script src="../resources/assets/plugins/summernote/summernote.min.js"></script>
-    <script src="../resources/assets/plugins/summernote/angular-summernote.min.js"></script>
+    <link rel="stylesheet" href="assets/plugins/summernote/summernote.css">
+    <script src="assets/plugins/summernote/summernote.min.js"></script>
+    <script src="assets/plugins/summernote/angular-summernote.min.js"></script>
 
     <!-- Text Family -->
-    <script type="text/javascript" src="../resources/assets/angular/Dialogs/Text/textFamily.js"></script>
+    <script type="text/javascript" src="angular/Dialogs/Text/textFamily.js"></script>
     <!-- ACEE CODE END -->
     <!-- --------------------------------------- Dashboard Modules --------------------------------------- -->
     <!-- Highcharts Play -->
-    <script type="text/javascript" src="../resources/assets/angular/Dialogs/SaveDashboard/saveDashboard.js"></script>
+    <script type="text/javascript" src="angular/Dialogs/SaveDashboard/saveDashboard.js"></script>
 
     <!-- GRIDSTACK -->
-    <script src="../resources/assets/plugins/gridstack/gridstack.min.js"></script>
-    <link rel="stylesheet" href="../resources/assets/plugins/gridstack/gridstack.min.css">
-    <link rel="stylesheet" href="../resources/assets/plugins/gridstack/gridstack-extra.min.css">
-    <script src="../resources/assets/plugins/gridstack/gridstack.angular.js"></script>
+    <script src="assets/plugins/gridstack/gridstack.min.js"></script>
+    <link rel="stylesheet" href="assets/plugins/gridstack/gridstack.min.css">
+    <link rel="stylesheet" href="assets/plugins/gridstack/gridstack-extra.min.css">
+    <script src="assets/plugins/gridstack/gridstack.angular.js"></script>
 
 </head>
 <body ng-app="MainApplication" ng-cloak ng-controller="MainController" layout layout-align="start stretch">
@@ -161,10 +161,10 @@
                 <div flex="5" layout layout-align="center stretch">
                     <div flex="20" ng-if="sideToggle=='collapsed'"></div>
                     <div flex layout layout-align="center center" ng-if="sideToggle=='collapsed'">
-                        <img src="../resources/assets/images/painter-logo.png" height="70%" width="70%" />
+                        <img src="assets/images/painter-logo.png" height="70%" width="70%" />
                     </div>
                     <div flex layout layout-align="center center" ng-if="sideToggle=='expanded'">
-                        <img src="../resources/assets/images/HUD_logo_white.png" height="70%" width="70%" />
+                        <img src="assets/images/HUD_logo_white.png" height="70%" width="70%" />
                     </div>
                     <div flex="50" ng-if="sideToggle=='expanded'" class="hud-painter-title">
                         <span>Painter</span>
@@ -367,7 +367,7 @@
                 <div flex ng-if="sideState=='main' || sideState=='create widget'"></div>
                 <md-divider class="no-margin no-padding"></md-divider>
                 <div flex="5" class="hud-sidebar-header" ng-if="sideToggle=='expanded'" layout layout-align="start stretch">
-                    <div flex class="hpe-logo-image" style="background-image: url('../resources/assets/images/hpe_logo_white_green.png')"></div>
+                    <div flex class="hpe-logo-image" style="background-image: url('assets/images/hpe_logo_white_green.png')"></div>
                 </div>
             </div>
 
@@ -604,7 +604,7 @@
                 <div flex></div>
                 <div style="position:absolute;top:40%;z-index:0;" class="dashbox" layout="column" layout-align="center center">
 
-                    <img src="../resources/assets/images/widget_icon.png">
+                    <img src="assets/images/widget_icon.png">
                     <h2 class="dashboard-text-emphasis">Your dashboard is empty</h2>
                     <div class="dashboard-text subtle">You haven't added any widgets to your dashboard</div>
                     <div class="dashboard-text subtle">Click on the dashboard menu to get started</div>
@@ -920,7 +920,7 @@
             </div>
         </div>
     </div>
-    <script src="../resources/assets/js/script.js"></script>
+    <script src="assets/js/script.js"></script>
 </body>
 </html>
 
