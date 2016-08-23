@@ -1,0 +1,793 @@
+<md-dialog class="hud-create-widget" layout="column" layout-align="center stretch" layout-padding>
+    <div flex="5" layout layout-align="center stretch">
+        <span class="hud-modal-title">Reconfigure your Widget</span>
+        <div flex="none" hud-setter width-in-percent="1"></div>
+        <div flex layout layout-align="start center">
+            <span class="hud-modal-subtitle">{{modalSubtitle}}</span>
+        </div>
+        <div flex="5" layout layout-align="end center">
+            <md-button ng-click="CloseModal()" aria-label="close button" class="md-icon-button" hud-setter padding="'0 0 0 0'" margin="'0 0 0 0'"><md-icon md-svg-src="{{SVG.close}}"></md-icon></md-button>
+        </div>
+    </div>
+    <div flex layout="column" layout-align="center center" layout-padding ng-if="loadState">
+        <md-icon style="height:100px;width:100px;" md-svg-src="{{SVG.gear}}"></md-icon>
+    </div>
+    <div flex layout="column" layout-align="center stretch" layout-padding ng-if="!loadState">
+        <div flex layout layout-align="center stretch">
+            <div flex layout layout-align="center stretch">
+                <div name="allForm" flex class="scrollbar-macosx" data-jquery-scrollbar layout="column" layout-align="start stretch" ng-if="true" style="width:98% !important;">
+                    <div flex="none" hud-setter height-in-percent="5" layout layout-align="center stretch">
+                        <div flex></div>
+                        <div flex="20" layout layout-align="end center">
+                            <md-checkbox class="hud-advanced-checkbox" ng-model="advanced" aria-label="advanced">
+                                Advanced Options
+                            </md-checkbox>
+                        </div>
+                    </div>
+                    <!-- DATA SOURCE AND  REFRESH INTERVAL-->
+                    <div flex="none" hud-setter height-in-percent="15" layout="row" layout-align="start stretch">
+                        <!-- DATA SOURCE -->
+                        <div flex layout="column" layout-align="start stretch">
+                            <div flex="20" layout layout-align="start center">
+                                <span flex="70" class="field-title">Data Source</span>
+                                <span flex></span>
+                                <div flex="10" layout layout-align="center stretch">
+                                    <md-menu md-position-mode="target target">
+                                        <md-button ng-click="$mdOpenMenu($event)" class="md-icon-button" hud-setter width-in-percent="100" height-in-percent="5">
+                                            <md-icon md-menu-origin hud-setter height-in-percent="100" width-in-percent="100" md-svg-src="{{SVG.helpcircle}}"></md-icon>
+                                        </md-button>
+                                        <md-menu-content width="4" class="hud-help-md md-whiteframe-3dp" layout layout-align="center center" layout-margin>
+                                            <md-icon flex="10" md-svg-src="{{SVG.info}}"></md-icon>
+                                            <span flex>
+                                                Palagay ng write up dito. Tapos kung masyado mahaba, okay lang na dagdagan ng container or dagdagan ng container. atm, flex=5 tong container na to. thanks mga beh.
+                                            </span>
+                                        </md-menu-content>
+                                    </md-menu>
+                                </div>
+                            </div>
+                            <md-divider></md-divider>
+                            <div flex layout layout-align="center stretch" hud-setter margin="'5% 0 1% 0'">
+                                <div flex>
+                                    <md-input-container flex class="md-block no-margin">
+                                        <label>Data Source URL</label>
+                                        <input ng-model="refreshInfo.url" name="url" required ng-change="OnChangeStepOne()">
+                                    </md-input-container>
+                                </div>
+                                <div flex="20" class="graceful-leave" ng-if="advanced">
+                                    <md-input-container class="md-block no-margin">
+                                        <label>Method</label>
+                                        <md-select ng-change="ResetStepOne()" ng-model="refreshInfo.method">
+                                            <md-option ng-repeat="o in ['GET','POST']" value="{{o}}">
+                                                {{o}}
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                        </div>
+                        <div flex="none" hud-setter width-in-percent="1"></div>
+                        <!-- REFRESH INTERVAL -->
+                        <div flex layout="column" layout-align="start stretch">
+                            <div flex="20" layout layout-align="start center">
+                                <span flex="70" class="field-title">Refresh Interval</span>
+                                <span flex></span>
+                                <div flex="10" layout layout-align="center stretch">
+                                    <md-menu md-position-mode="target target">
+                                        <md-button ng-click="$mdOpenMenu($event)" class="md-icon-button" hud-setter width-in-percent="100" height-in-percent="5">
+                                            <md-icon md-menu-origin hud-setter height-in-percent="100" width-in-percent="100" md-svg-src="{{SVG.helpcircle}}"></md-icon>
+                                        </md-button>
+                                        <md-menu-content width="4" class="hud-help-md md-whiteframe-3dp" layout layout-align="center center" layout-margin>
+                                            <md-icon flex="10" md-svg-src="{{SVG.info}}"></md-icon>
+                                            <span flex>
+                                                Palagay ng write up dito. Tapos kung masyado mahaba, okay lang na dagdagan ng container or dagdagan ng container. atm, flex=5 tong container na to. thanks mga beh.
+                                            </span>
+                                        </md-menu-content>
+                                    </md-menu>
+                                </div>
+                            </div>
+                            <md-divider></md-divider>
+                            <div flex layout layout-align="center stretch" hud-setter margin="'5% 0 1% 0'">
+                                <div flex>
+                                    <md-input-container class="md-block no-margin">
+                                        <label>Interval Unit</label>
+                                        <md-select ng-model="refreshInfo.interval.type" ng-change="OnChangeStepTwo(StepTwo)">
+                                            <md-option ng-repeat="o in ['Seconds','Minutes','Hours']" value="{{o}}">
+                                                {{o}}
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>
+                                <div flex="35">
+                                    <md-input-container class="md-block no-margin">
+                                        <label>Interval Value</label>
+                                        <input ng-change="OnChangeStepTwo(StepTwo)" ng-model="refreshInfo.interval.unit" name="unit" type="number" min="0" max="100" required="true">
+                                    </md-input-container>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- WIDGET TOOLS -->
+                    <div flex="none" hud-setter height-in-percent="15" layout="column" layout-align="start stretch" ng-if="advanced">
+                        <div flex="20" layout layout-align="start center">
+                            <span flex="70" class="field-title">Widget Tools</span>
+                            <span flex></span>
+                            <div flex="10" layout layout-align="center stretch">
+                                <md-menu md-position-mode="target target">
+                                    <md-button ng-click="$mdOpenMenu($event)" class="md-icon-button" hud-setter width-in-percent="100" height-in-percent="5">
+                                        <md-icon md-menu-origin hud-setter height-in-percent="100" width-in-percent="100" md-svg-src="{{SVG.helpcircle}}"></md-icon>
+                                    </md-button>
+                                    <md-menu-content width="4" class="hud-help-md md-whiteframe-3dp" layout layout-align="center center" layout-margin>
+                                        <md-icon flex="10" md-svg-src="{{SVG.info}}"></md-icon>
+                                        <span flex>
+                                            Palagay ng write up dito. Tapos kung masyado mahaba, okay lang na dagdagan ng container or dagdagan ng container. atm, flex=5 tong container na to. thanks mga beh.
+                                        </span>
+                                    </md-menu-content>
+                                </md-menu>
+                            </div>
+                        </div>
+                        <md-divider></md-divider>
+                        <div flex layout layout-align="center stretch" hud-setter margin="'3% 0 1% 0'">
+                            <div flex>
+                                <md-checkbox ng-model="widgetInfo.hardRefresh" aria-label="Checkbox 1">
+                                    Manual Refresh Tool
+                                </md-checkbox>
+                            </div>
+                            <div flex>
+                                <md-checkbox ng-model="widgetInfo.header" aria-label="Checkbox 1" ng-change="OnChangeStepTwo(StepTwo)">
+                                    Widget Header
+                                </md-checkbox>
+                            </div>
+                            <div flex="40" layout layout-align="center stretch">
+                                <md-input-container flex class="md-block no-margin graceful-leave">
+                                    <label>Widget Title</label>
+                                    <input ng-model="widgetInfo.name" ng-disabled="!widgetInfo.header" name="name" required ng-change="OnChangeStepTwo(StepTwo)">
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- GRAPH PROPERTIES AND KEY NAME -->
+                    <div flex="none" hud-setter height-in-percent="15" layout="row" layout-align="start stretch">
+                        <!-- GRAPH PROPERTIES -->
+                        <div flex layout="column" layout-align="center stretch">
+                            <div flex="20" layout layout-align="start center">
+                                <span flex="70" class="field-title">Graph Properties</span>
+                                <span flex></span>
+                                <div flex="10" layout layout-align="center stretch">
+                                    <md-menu md-position-mode="target target">
+                                        <md-button ng-click="$mdOpenMenu($event)" class="md-icon-button" hud-setter width-in-percent="100" height-in-percent="5">
+                                            <md-icon md-menu-origin hud-setter height-in-percent="100" width-in-percent="100" md-svg-src="{{SVG.helpcircle}}"></md-icon>
+                                        </md-button>
+                                        <md-menu-content width="4" class="hud-help-md md-whiteframe-3dp" layout layout-align="center center" layout-margin>
+                                            <md-icon flex="10" md-svg-src="{{SVG.info}}"></md-icon>
+                                            <span flex>
+                                                Palagay ng write up dito. Tapos kung masyado mahaba, okay lang na dagdagan ng container or dagdagan ng container. atm, flex=5 tong container na to. thanks mga beh.
+                                            </span>
+                                        </md-menu-content>
+                                    </md-menu>
+                                </div>
+                            </div>
+                            <md-divider></md-divider>
+                            <div flex layout layout-align="center stretch">
+                                <div flex>
+                                    <md-input-container class="md-block">
+                                        <label>Type</label>
+                                        <md-select ng-model="tabularInfo.type" ng-change="">
+                                            <md-option ng-repeat="o in chartTypes" value="{{o.value}}">
+                                                {{o.name}}
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>
+                                <div flex>
+                                    <md-input-container class="md-block">
+                                        <label>Stacking</label>
+                                        <md-select ng-model="tabularInfo.stacking" ng-change="GenerateHighchart()">
+                                            <md-option ng-repeat="o in stackingType" value="{{o.value}}">
+                                                {{o.name}}
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                        </div>
+                        <div flex="none" hud-setter width-in-percent="1"></div>
+                        <!-- KEY NAME -->
+                        <div flex layout="column" layout-align="center stretch">
+                            <div flex="20" layout layout-align="start center">
+                                <span flex="70" class="field-title">Main Key Name</span>
+                                <span flex></span>
+                                <div flex="10" layout layout-align="center stretch">
+                                    <md-menu md-position-mode="target target">
+                                        <md-button ng-click="$mdOpenMenu($event)" class="md-icon-button" hud-setter width-in-percent="100" height-in-percent="5">
+                                            <md-icon md-menu-origin hud-setter height-in-percent="100" width-in-percent="100" md-svg-src="{{SVG.helpcircle}}"></md-icon>
+                                        </md-button>
+                                        <md-menu-content width="4" class="hud-help-md md-whiteframe-3dp" layout layout-align="center center" layout-margin>
+                                            <md-icon flex="10" md-svg-src="{{SVG.info}}"></md-icon>
+                                            <span flex>
+                                                Palagay ng write up dito. Tapos kung masyado mahaba, okay lang na dagdagan ng container or dagdagan ng container. atm, flex=5 tong container na to. thanks mga beh.
+                                            </span>
+                                        </md-menu-content>
+                                    </md-menu>
+                                </div>
+                            </div>
+                            <md-divider></md-divider>
+                            <div flex class="span-width" layout layout-align="center stretch">
+                                <div flex="20" layout layout-align="center center"><span hud-setter margin="'0 0 15% 0'">Key Name:</span></div>
+                                <div flex="none" hud-setter width-in-percent="3"></div>
+                                <md-input-container flex class="no-margin no-padding" hud-setter margin="'6% 2% 0 0%'">
+                                    <md-select ng-model="tabularInfo.label" ng-change="">
+                                        <md-option ng-repeat="(o,k) in originalData[0]" value="{{o}}">
+                                            {{o}}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- DATA SELECTION -->
+                    <div flex="none" hud-setter height-in-percent="55" layout="column" layout-align="start stretch">
+                        <div flex="5" layout layout-align="start center">
+                            <span flex="70" class="field-title">Data Selection</span>
+                            <span flex></span>
+                            <div flex="none" hud-setter width-in-percent="10" layout layout-align="center center">
+                                <md-input-container flex class="md-block no-margin no-padding" hud-setter margin="'22% 0 0 0'">
+                                    <input max="{{originalData.length}}" placeholder="Rows" ng-change="dataSelectTable.dataSelectTable.rowpage=0" ng-model="dataSelectTable.row" type="number" min="1" />
+                                </md-input-container>
+                            </div>
+                            <div flex="none" hud-setter width-in-percent="5" layout layout-align="center center"><span>by</span></div>
+                            <div flex="none" hud-setter width-in-percent="10" layout layout-align="center center">
+                                <md-input-container flex class="md-block no-margin no-padding" hud-setter margin="'22% 0 0 0'">
+                                    <input max="{{originalDataKeys.length}}" placeholder="Cols" ng-model="dataSelectTable.col" ng-change="dataSelectTable.colpage=0" type="number" min="1" />
+                                </md-input-container>
+                            </div>
+                            <div flex="10" layout layout-align="center stretch">
+                                <md-menu md-position-mode="target target">
+                                    <md-button ng-click="$mdOpenMenu($event)" class="md-icon-button" hud-setter width-in-percent="100" height-in-percent="5">
+                                        <md-icon md-menu-origin hud-setter height-in-percent="100" width-in-percent="100" md-svg-src="{{SVG.helpcircle}}"></md-icon>
+                                    </md-button>
+                                    <md-menu-content width="4" class="hud-help-md md-whiteframe-3dp" layout layout-align="center center" layout-margin>
+                                        <md-icon flex="10" md-svg-src="{{SVG.info}}"></md-icon>
+                                        <span flex>
+                                            Select the data series to be used by ticking the boxes to the left of each row. Select columns to be displayed by ticking the boxes in the table headers.
+                                        </span>
+                                    </md-menu-content>
+                                </md-menu>
+                            </div>
+                        </div>
+                        <md-divider></md-divider>
+                        <div flex layout layout-align="start stretch">
+                            <div flex layout layout-align="center center" ng-if="tabularInfo.label==''">
+                                <span class="subtle">Select Main Key Name.</span>
+                            </div>
+                            <div flex="none" hud-setter height-in-percent="85" class="span-width" layout="column" layout-align="start stretch" ng-if="tabularInfo.label.length!=0">
+                                <div flex="none" hud-setter height-in-percent="2"></div>
+                                <div flex layout layout-align="start stretch">
+                                    <div flex layout layout-align="center center" ng-if="tabularInfo.label==''">
+                                        <span class="subtle">Select Main Key Name.</span>
+                                    </div>
+                                    <div flex="none" hud-setter height-in-percent="100" class="span-width" layout="column" layout-align="start stretch" ng-if="tabularInfo.label.length!=0">
+                                        <div flex="none" hud-setter height-in-percent="2"></div>
+                                        <div flex="25" layout layout-align="center stretch">
+                                            <div flex layout layout-align="center stretch" hud-setter margin="'0 0 5px 0'">
+                                                <div flex hud-setter font-in-percent="80" layout="column" layout-align="center stretch">
+                                                    <!-- X KEY -->
+                                                    <div flex layout layout-align="space-between stretch">
+                                                        <span>Select Key for Value of X:</span>
+                                                        <md-input-container class="no-margin no-padding" hud-setter margin="'-1% 0 0 2%'">
+                                                            <md-select ng-model="tabularInfo.columns.x" ng-change="GenerateHighchart()">
+                                                                <md-option ng-repeat="(o,k) in originalData[0]" value="{{o}}" ng-if="o!=tabularInfo.columns.y && o!=tabularInfo.columns.z && o!=tabularInfo.label">
+                                                                    {{o}}
+                                                                </md-option>
+                                                            </md-select>
+                                                        </md-input-container>
+                                                    </div>
+                                                    <div flex="5"></div>
+                                                    <!-- Y KEY -->
+                                                    <div flex layout layout-align="space-between stretch">
+                                                        <span>Select Key for Value of Y:</span>
+                                                        <md-input-container class="no-margin no-padding" hud-setter margin="'-1% 0 0 2%'">
+                                                            <md-select ng-model="tabularInfo.columns.y" ng-change="GenerateHighchart()">
+                                                                <md-option ng-repeat="(o,k) in originalData[0]" value="{{o}}" ng-if="o!=tabularInfo.columns.z && o!=tabularInfo.columns.x && o!=tabularInfo.label">
+                                                                    {{o}}
+                                                                </md-option>
+                                                            </md-select>
+                                                        </md-input-container>
+                                                    </div>
+                                                    <div flex="5"></div>
+                                                    <!-- RADIUS KEY -->
+                                                    <div flex layout layout-align="space-between stretch" ng-if="tabularInfo.type=='bubble'">
+                                                        <span>Select Key for Value of Radius:</span>
+                                                        <md-input-container class="no-margin no-padding" hud-setter margin="'-1% 0 0 2%'">
+                                                            <md-select ng-model="tabularInfo.columns.z" ng-change="GenerateHighchart()">
+                                                                <md-option ng-repeat="(o,k) in originalData[0]" value="{{o}}" ng-if="o!=tabularInfo.columns.y && o!=tabularInfo.columns.x && o!=tabularInfo.label">
+                                                                    {{o}}
+                                                                </md-option>
+                                                            </md-select>
+                                                        </md-input-container>
+                                                    </div>
+                                                </div>
+                                                <div flex="none" hud-setter width-in-percent="2"></div>
+                                                <div flex hud-setter font-in-percent="80" layout="column" layout-align="center stretch">
+                                                    <!-- X NAME -->
+                                                    <div flex layout layout-align="space-between stretch">
+                                                        <span>Name for X:</span>
+                                                        <md-input-container class="no-margin no-padding md-block">
+                                                            <input type="text" ng-model="chartInfo.xname" ng-change="GenerateHighchart()" />
+                                                        </md-input-container>
+                                                    </div>
+                                                    <div flex="5"></div>
+                                                    <!-- Y NAME -->
+                                                    <div flex layout layout-align="space-between stretch">
+                                                        <span>Name for Y:</span>
+                                                        <md-input-container class="no-margin no-padding md-block">
+                                                            <input type="text" ng-model="chartInfo.yname" ng-change="GenerateHighchart()" />
+                                                        </md-input-container>
+                                                    </div>
+                                                    <div flex="5"></div>
+                                                    <!-- RADIUS NAME -->
+                                                    <div flex layout layout-align="space-between stretch" ng-if="tabularInfo.type=='bubble'">
+                                                        <span>Name for Radius:</span>
+                                                        <md-input-container class="no-margin no-padding md-block">
+                                                            <input type="text" ng-model="chartInfo.zname" ng-change="GenerateHighchart()" />
+                                                        </md-input-container>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div flex="none" hud-setter width-in-percent="2"></div>
+                                            <div flex="none" hud-setter width-in-percent="10" layout layout-align="center center">
+                                                <md-input-container flex class="md-block no-margin no-padding">
+                                                    <input max="{{originalData.length}}" placeholder="Rows" ng-change="dataSelectTable.dataSelectTable.rowpage=0" ng-model="dataSelectTable.row" type="number" min="1" />
+                                                </md-input-container>
+                                            </div>
+                                            <div flex="none" hud-setter width-in-percent="5" layout layout-align="center center"><span>by</span></div>
+                                            <div flex="none" hud-setter width-in-percent="10" layout layout-align="center center">
+                                                <md-input-container flex class="md-block no-margin no-padding">
+                                                    <input max="{{originalDataKeys.length}}" placeholder="Cols" ng-model="dataSelectTable.col" ng-change="dataSelectTable.colpage=0" type="number" min="1" />
+                                                </md-input-container>
+                                            </div>
+                                        </div>
+                                        <div flex="none" hud-setter height-in-percent="2"></div>
+                                        <div flex layout layout-align="start stretch">
+                                            <!-- ROW PAGINATION -->
+                                            <div flex="5" layout="column" layout-align="center center">
+                                                <md-button hud-setter minwidth-in-percent="100" class="no-margin no-padding" ng-disabled="dataSelectTable.rowpage == 0" ng-click="dataSelectTable.rowpage=dataSelectTable.rowpage-1">
+                                                    <md-icon md-svg-src="{{SVG.up}}"></md-icon>
+                                                </md-button>
+                                                <span layout layout-align="center center">{{dataSelectTable.rowpage+1}} / {{(originalData.length / dataSelectTable.row)|roundup}}</span>
+                                                <md-button hud-setter minwidth-in-percent="100" class="no-margin no-padding" ng-disabled="dataSelectTable.rowpage >= originalData.length/dataSelectTable.row - 1" ng-click="dataSelectTable.rowpage=dataSelectTable.rowpage+1">
+                                                    <md-icon md-svg-src="{{SVG.down}}"></md-icon>
+                                                </md-button>
+                                            </div>
+                                            <div flex layout="column" layout-align="start stretch">
+                                                <!-- COLUMN PAGINATION -->
+                                                <div flex="10" layout layout-align="center stretch">
+                                                    <md-button hud-setter minheight-in-percent="5" minwidth-in-percent="5" class="no-margin no-padding" ng-disabled="dataSelectTable.colpage == 0" ng-click="dataSelectTable.colpage=dataSelectTable.colpage-1">
+                                                        <md-icon md-svg-src="{{SVG.previous}}"></md-icon>
+                                                    </md-button>
+                                                    <div layout layout-align="center center"><span>{{dataSelectTable.colpage+1}} / {{(originalDataKeys.length / dataSelectTable.col)|roundup}}</span></div>
+                                                    <md-button hud-setter minheight-in-percent="5" minwidth-in-percent="5" class="no-margin no-padding" ng-disabled="dataSelectTable.colpage >= originalDataKeys.length/dataSelectTable.col - 1" ng-click="dataSelectTable.colpage=dataSelectTable.colpage+1">
+                                                        <md-icon md-svg-src="{{SVG.next}}"></md-icon>
+                                                    </md-button>
+                                                </div>
+                                                <!-- DATA TABLE -->
+                                                <div flex class="scrollbar-macosx" data-jquery-scrollbar>
+                                                    <table>
+                                                        <thead>
+                                                            <tr>
+                                                                <th></th>
+                                                                <th>{{tabularInfo.label}}</th>
+                                                                <th ng-if="tabularInfo.columns.x!=''">X - {{tabularInfo.columns.x}}</th>
+                                                                <th ng-if="tabularInfo.columns.y!=''">Y - {{tabularInfo.columns.y}}</th>
+                                                                <th ng-if="tabularInfo.columns.z!='' && tabularInfo.type=='bubble'">Radius - {{tabularInfo.columns.z}}</th>
+                                                                <th ng-if="!CheckSelectedKey(o)" align="center" ng-repeat="o in originalDataKeys | startFrom:dataSelectTable.colpage*dataSelectTable.col |  limitTo:dataSelectTable.col" ng-if="o!=tabularInfo.label">
+                                                                    <md-tooltip class="hud-menu-tip-sm" md-direction=" top">{{o}}</md-tooltip>
+                                                                    <!--<md-checkbox ng-click="ToggleSelectedKey(o)" ng-checked="CheckSelectedKey(o)" aria-label="Checkbox 1"></md-checkbox>-->
+                                                                    <span>{{o}}</span>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-repeat="o in originalData | startFrom:dataSelectTable.rowpage*dataSelectTable.row |  limitTo:dataSelectTable.row">
+                                                                <td hud-setter padding="'0 10px'" ng-repeat="key in originalDataKeys" ng-if="$index==0" width="5%">
+                                                                    <md-checkbox class="md-primary" ng-click="ToggleSelectedData(GetIndexOf(o))" ng-checked="CheckSelectedData(GetIndexOf(o))" aria-label="Checkbox">
+                                                                    </md-checkbox>
+                                                                </td>
+                                                                <td><span>{{o[tabularInfo.label]}}</span></td>
+                                                                <td ng-if="tabularInfo.columns.x!=''">{{o[tabularInfo.columns.x]}}</td>
+                                                                <td ng-if="tabularInfo.columns.y!=''">{{o[tabularInfo.columns.y]}}</td>
+                                                                <td ng-if="tabularInfo.columns.z!='' && tabularInfo.type=='bubble'">{{o[tabularInfo.columns.z]}}</td>
+                                                                <td ng-if="!CheckSelectedKey(key)" align="center" ng-repeat="key in originalDataKeys | startFrom:dataSelectTable.colpage*dataSelectTable.col |  limitTo:dataSelectTable.col"
+                                                                    ng-class="{'hud-unselected-column':validation.formatData()}">
+                                                                    <span>{{o[key]}}</span>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Graph Customization -->
+                    <div flex="none" hud-setter height-in-percent="55" layout="column" layout-align="start stretch">
+                        <div flex="5" layout layout-align="start center">
+                            <span flex="70" class="field-title">Chart Customization</span>
+                            <span flex></span>
+                            <div flex="10" layout layout-align="center stretch">
+                                <md-menu md-position-mode="target target">
+                                    <md-button ng-click="$mdOpenMenu($event)" class="md-icon-button" hud-setter width-in-percent="100" height-in-percent="5">
+                                        <md-icon md-menu-origin hud-setter height-in-percent="100" width-in-percent="50" md-svg-src="{{SVG.helpcircle}}"></md-icon>
+                                    </md-button>
+                                    <md-menu-content width="4" class="hud-help-md md-whiteframe-3dp" layout layout-align="center center" layout-margin>
+                                        <md-icon flex="10" md-svg-src="{{SVG.info}}"></md-icon>
+                                        <span flex>
+                                            Palagay ng write up dito. Tapos kung masyado mahaba, okay lang na dagdagan ng container or dagdagan ng container. atm, flex=5 tong container na to. thanks mga beh.
+                                        </span>
+                                    </md-menu-content>
+                                </md-menu>
+                            </div>
+                        </div>
+                        <md-divider></md-divider>
+                        <div flex layout layout-align="start stretch">
+                            <div flex layout layout-align="start stretch">
+                                <div flex layout layout-align="center center" ng-if="tabularInfo.label==''">
+                                    <span class="subtle">Select Main Key Name.</span>
+                                </div>
+                                <md-tabs flex class="span-width" md-selected="customIndex">
+                                    <md-tab>
+                                        <md-tab-label><span class="hud-label">Data Customization</span></md-tab-label>
+                                        <md-tab-body layout="column" layout-align="center stretch" class="span-height">
+                                            <div class="scrollbar-macosx hud-graph-props" data-jquery-scrollbar layout="column" layout-align="start stretch">
+                                                <div flex layout layout-align="start stretch">
+                                                    <div flex="5" layout="column" layout-align="center center">
+                                                        <md-button hud-setter minwidth-in-percent="100" class="no-margin no-padding" ng-disabled="customGraphTable.rowpage == 0" ng-click="customGraphTable.rowpage=customGraphTable.rowpage-1">
+                                                            <md-icon md-svg-src="{{SVG.up}}"></md-icon>
+                                                        </md-button>
+                                                        <span layout layout-align="center center">{{customGraphTable.rowpage+1}} / {{(tabularInfo.rows.length / customGraphTable.row)|roundup}}</span>
+                                                        <md-button hud-setter minwidth-in-percent="100" class="no-margin no-padding" ng-disabled="customGraphTable.rowpage >= tabularInfo.rows.length/customGraphTable.row - 1" ng-click="customGraphTable.rowpage=customGraphTable.rowpage+1">
+                                                            <md-icon md-svg-src="{{SVG.down}}"></md-icon>
+                                                        </md-button>
+                                                    </div>
+                                                    <div flex layout="column" layout-align="center stretch">
+                                                        <div flex="20" layout layout-align="end stretch">
+                                                            <div flex="none" hud-setter width-in-percent="10" layout layout-align="center center">
+                                                                <md-input-container flex class="md-block no-margin no-padding" hud-setter margin="'50% 0 0 0'">
+                                                                    <input max="{{originalData.length}}" placeholder="Rows" ng-change="customGraphTable.rowpage=0" ng-model="customGraphTable.row" type="number" min="1" />
+                                                                </md-input-container>
+                                                            </div>
+                                                            <div flex="15" layout layout-align="center stretch">
+                                                                <md-menu md-position-mode="target target" ng-if="customIndex==0">
+                                                                    <md-button ng-click="$mdOpenMenu($event)" class="span-width no-margin no-padding">
+                                                                        Options
+                                                                    </md-button>
+                                                                    <md-menu-content width="4" class="md-whiteframe-3dp">
+                                                                        <md-menu-item ng-repeat="o in CustomGraphSettings">
+                                                                            <md-button ng-click="CustomGraphHeadToggle(o)" ng-if="o.active" md-prevent-menu-close="md-prevent-menu-close">
+                                                                                <md-icon md-svg-icon="{{SVG.checkbox}}" md-menu-align-target></md-icon>
+                                                                                {{o.name}}
+                                                                            </md-button>
+                                                                            <md-button ng-click="CustomGraphHeadToggle(o)" ng-if="!o.active" md-prevent-menu-close="md-prevent-menu-close">
+                                                                                <md-icon md-svg-icon="{{SVG.uncheckbox}}" md-menu-align-target></md-icon>
+                                                                                {{o.name}}
+                                                                            </md-button>
+                                                                        </md-menu-item>
+                                                                    </md-menu-content>
+                                                                </md-menu>
+                                                            </div>
+                                                        </div>
+                                                        <div flex layout="column" layout-align="center stretch" class="scrollbar-macosx span-width hud-graph-props" data-jquery-scrollbar>
+                                                            <table flex>
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>{{tabularInfo.label}}</th>
+                                                                        <th align="center" ng-repeat="o in CustomGraphSettings | startFrom:customGraphTable.colpage*customGraphTable.col |  limitTo:customGraphTable.col" ng-if="o.active">
+                                                                            {{o.name}}
+                                                                        </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr class="noselect" ng-repeat="(o,i) in tabularInfo.rows | startFrom:customGraphTable.rowpage*customGraphTable.row |  limitTo:customGraphTable.row">
+                                                                        <td hud-setter padding="'0 15px'">{{originalData[i][tabularInfo.label]}}</td>
+                                                                        <td align="center" ng-repeat="p in CustomGraphSettings | startFrom:customGraphTable.colpage*customGraphTable.col |  limitTo:customGraphTable.col" ng-if="p.active">
+                                                                            <div hud-setter ng-if="p.id=='color'" class="min-div">
+                                                                                <div md-color-picker
+                                                                                     ng-model="tabularInfo.color[i]"
+                                                                                     label="{{originalData[i][tabularInfo.label]}} Color"
+                                                                                     icon=""
+                                                                                     default="#f00"
+                                                                                     md-color-clear-button="false"
+                                                                                     md-color-generic-palette="false"
+                                                                                     md-color-history="false"></div>
+                                                                            </div>
+                                                                            <md-input-container class="no-margin no-padding min-div" ng-if="p.id=='lineWidth'">
+                                                                                <label>{{originalData[i][tabularInfo.label]}} Line Width</label>
+                                                                                <input type="number" min="1" ng-model="tabularInfo.lineWidth[i]">
+                                                                            </md-input-container>
+                                                                            <md-input-container class="no-margin no-padding min-div" ng-if="p.id=='radius'">
+                                                                                <label>{{originalData[i][tabularInfo.label]}} Marker Radius</label>
+                                                                                <input type="number" min="1" ng-model="tabularInfo.radius[i]">
+                                                                            </md-input-container>
+                                                                            <md-input-container class="md-block" hud-setter margin="'-18% 0 0 0'" ng-if="p.id == 'dashStyle'">
+                                                                                <label>{{originalData[i][tabularInfo.label]}} Line Style</label>
+                                                                                <md-select ng-model="tabularInfo.dashStyle[i]">
+                                                                                    <md-option ng-repeat="type in lineStyles" value="{{type}}">
+                                                                                        {{type}}
+                                                                                    </md-option>
+                                                                                </md-select>
+                                                                            </md-input-container>
+                                                                            <md-input-container class="md-block" hud-setter margin="'-18% 0 0 0'" ng-if="p.id=='symbol'">
+                                                                                <label>{{originalData[i][tabularInfo.label]}} Marker Symbol</label>
+                                                                                <md-select ng-model="tabularInfo.symbol[i]">
+                                                                                    <md-option ng-repeat="type in markersSymbol" value="{{type}}">
+                                                                                        {{type}}
+                                                                                    </md-option>
+                                                                                </md-select>
+                                                                            </md-input-container>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <md-divider class="no-margin no-padding"></md-divider>
+                                            <div hud-setter height-in-percent="5" layout layout-align="end stretch">
+                                                <div flex="15" layout layout-align="center stretch">
+                                                    <md-button ng-click="GenerateHighchart()" class="no-margin no-padding hud-button" hud-setter maxwidth-in-percent="100" maxheight-in-percent="5">
+                                                        Apply
+                                                    </md-button>
+                                                </div>
+                                            </div>
+                                        </md-tab-body>
+                                    </md-tab>
+                                    <md-tab>
+                                        <md-tab-label><span class="hud-label">Plot Bands</span></md-tab-label>
+                                        <md-tab-body layout="column" layout-align="start stretch" class="span-height">
+                                            <div flex class="span-height" layout="column" layout-align="center stretch">
+                                                <div flex="50" layout layout-align="center stretch">
+                                                    <div flex layout-padding layout layout-align="center stretch">
+                                                        <form name="formPlotBand" flex layout="column" layout-align="center stretch">
+                                                            <div flex layout layout-align="center stretch">
+                                                                <div flex>
+                                                                    <md-input-container class="md-block no-margin">
+                                                                        <label>Axis</label>
+                                                                        <md-select ng-model="plotBand.axis">
+                                                                            <md-option ng-repeat="o in ['x','y']" value="{{o}}">
+                                                                                {{o}}
+                                                                            </md-option>
+                                                                        </md-select>
+                                                                    </md-input-container>
+                                                                </div>
+                                                                <div flex>
+                                                                    <md-input-container class="md-block no-margin" ng-if="plotBand.axis=='y'">
+                                                                        <label>From</label>
+                                                                        <input ng-model="plotBand.from" min="0" type="number" name="plotbandfrom" required />
+                                                                    </md-input-container>
+                                                                    <md-input-container class="md-block no-margin" ng-if="plotBand.axis=='x'">
+                                                                        <label>From</label>
+                                                                        <input ng-model="plotBand.from" min="0" max="{{tabularInfo.columns.length}}" type="number" name="plotbandfrom" required />
+                                                                    </md-input-container>
+                                                                </div>
+                                                                <div flex>
+                                                                    <md-input-container class="md-block no-margin" ng-if="plotBand.axis=='y'">
+                                                                        <label>To</label>
+                                                                        <input ng-model="plotBand.to" type="number" min="0" name="plotbandto" required />
+                                                                    </md-input-container>
+                                                                    <md-input-container class="md-block no-margin" ng-if="plotBand.axis=='x'">
+                                                                        <label>To</label>
+                                                                        <input ng-model="plotBand.to" type="number" min="0" max="{{tabularInfo.columns.length}}" name="plotbandto" required />
+                                                                    </md-input-container>
+                                                                </div>
+                                                            </div>
+                                                            <div flex layout layout-align="center stretch">
+                                                                <div flex>
+                                                                    <md-input-container class="md-block no-margin">
+                                                                        <label>Plot Band Name</label>
+                                                                        <input ng-model="plotBand.text" name="plotbandtext" required />
+                                                                    </md-input-container>
+                                                                </div>
+                                                                <div flex>
+                                                                    <md-input-container class="md-block no-margin">
+                                                                        <label>Text Rotation</label>
+                                                                        <input ng-model="plotBand.rotation" type="number" name="plotbandrotation" required />
+                                                                    </md-input-container>
+                                                                </div>
+                                                                <div flex hud-setter margin="'-3.5% 0 0 0'">
+                                                                    <div md-color-picker
+                                                                         ng-model="plotBand.color"
+                                                                         label="Plot Band Color"
+                                                                         icon=""
+                                                                         default="#f00"
+                                                                         md-color-generic-palette="false"
+                                                                         md-color-history="false"></div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                        <div flex="15" layout layout-align="center stretch">
+                                                            <md-button hud-setter class="md-fab md-mini md-primary" aria-label="Add" type="submit" ng-click="AddPlotBand()" ng-disabled="formPlotBand.$invalid">
+                                                                <md-icon md-svg-src="{{SVG.add}}" hud-setter height-in-percent="75" width-in-percent="75"></md-icon>
+                                                            </md-button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <md-divider></md-divider>
+                                                <div flex layout layout-align="center stretch">
+                                                    <div flex layout="column" layout-align="start stretch">
+                                                        <div flex layout layout-align="center center"><span>X-Axis Plot Bands</span></div>
+                                                        <div flex="70" layout layout-align="center center" ng-if="chartInfo.plotBands.x.length==0"><span class="subtle">No X Plot Bands yet.</span></div>
+                                                        <div flex="70" layout="column" layout-align="start stretch" layout-padding class="scrollbar-macosx span-height" data-jquery-scrollbar ng-if="chartInfo.plotBands.x.length>0">
+                                                            <div flex="none" hud-setter height-in-percent="20" layout layout-align="center stretch" ng-repeat="o in chartInfo.plotBands.x">
+                                                                <div flex layout layout-align="center center"><i class="fa fa-circle" style="color:{{o.color}}"></i><span flex="5"></span><span>{{o.text}}</span></div>
+                                                                <span flex layout layout-align="center center">[{{o.from}} - {{o.to}}]</span>
+                                                                <div flex="15">
+                                                                    <md-button hud-setter class="md-fab md-mini md-primary" aria-label="Add" type="submit" ng-click="RemovePlotBand(o)" ng-disabled="steptwo.$invalid">
+                                                                        <md-icon md-svg-src="{{SVG.close}}" hud-setter height-in-percent="75" width-in-percent="75"></md-icon>
+                                                                    </md-button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <md-divider></md-divider>
+                                                    <div flex layout="column" layout-align="start stretch">
+                                                        <div flex layout layout-align="center center"><span>Y-Axis Plot Bands</span></div>
+                                                        <div flex="70" layout layout-align="center center" ng-if="chartInfo.plotBands.y.length==0"><span class="subtle">No Y Plot Bands yet.</span></div>
+                                                        <div flex="70" layout="column" layout-align="start stretch" layout-padding class="scrollbar-macosx span-height" data-jquery-scrollbar ng-if="chartInfo.plotBands.y.length>0">
+                                                            <div flex="none" hud-setter height-in-percent="20" layout layout-align="center stretch" ng-repeat="o in chartInfo.plotBands.y">
+                                                                <div flex layout layout-align="center center"><i class="fa fa-circle" style="color:{{o.color}}"></i><span flex="5"></span><span>{{o.text}}</span></div>
+                                                                <span flex layout layout-align="center center">[{{o.from}} - {{o.to}}]</span>
+                                                                <div flex="15">
+                                                                    <md-button hud-setter class="md-fab md-mini md-primary" aria-label="Add" type="submit" ng-click="RemovePlotBand(o)" ng-disabled="steptwo.$invalid">
+                                                                        <md-icon md-svg-src="{{SVG.close}}" hud-setter height-in-percent="75" width-in-percent="75"></md-icon>
+                                                                    </md-button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </md-tab-body>
+                                    </md-tab>
+                                    <md-tab>
+                                        <md-tab-label><span class="hud-label">Plot Lines</span></md-tab-label>
+                                        <md-tab-body layout="column" layout-align="start stretch" class="span-height">
+                                            <div flex class="span-height" layout="column" layout-align="center stretch">
+                                                <div flex="50" layout layout-align="center stretch">
+                                                    <div flex layout-padding layout layout-align="center stretch">
+                                                        <form name="formPlotLine" flex layout="column" layout-align="center stretch">
+                                                            <div flex layout layout-align="center stretch">
+                                                                <div flex>
+                                                                    <md-input-container class="md-block no-margin">
+                                                                        <label>Axis</label>
+                                                                        <md-select ng-model="plotLine.axis">
+                                                                            <md-option ng-repeat="o in ['x','y']" value="{{o}}">
+                                                                                {{o}}
+                                                                            </md-option>
+                                                                        </md-select>
+                                                                    </md-input-container>
+                                                                </div>
+                                                                <div flex>
+                                                                    <md-input-container class="md-block no-margin">
+                                                                        <label>Dash Style</label>
+                                                                        <md-select ng-model="plotLine.dashStyle">
+                                                                            <md-option ng-repeat="o in ['Solid', 'Dot', 'Dash', 'ShortDash', 'LongDash']" value="{{o}}">
+                                                                                {{o}}
+                                                                            </md-option>
+                                                                        </md-select>
+                                                                    </md-input-container>
+                                                                </div>
+                                                                <div flex>
+                                                                    <md-input-container class="md-block no-margin">
+                                                                        <label>Vertical Align</label>
+                                                                        <md-select ng-model="plotLine.verticalAlign">
+                                                                            <md-option ng-repeat="o in ['Top','Middle','Bottom']" value="{{o}}">
+                                                                                {{o}}
+                                                                            </md-option>
+                                                                        </md-select>
+                                                                    </md-input-container>
+                                                                </div>
+                                                                <div flex>
+                                                                    <md-input-container class="md-block no-margin">
+                                                                        <label>Value</label>
+                                                                        <input ng-model="plotLine.value" type="number" name="plotlinevalue" required />
+                                                                    </md-input-container>
+                                                                </div>
+                                                            </div>
+                                                            <div flex layout layout-align="center stretch">
+                                                                <div flex>
+                                                                    <md-input-container class="md-block no-margin">
+                                                                        <label>Plot Line Name</label>
+                                                                        <input ng-model="plotLine.text" name="plotLinetext" required />
+                                                                    </md-input-container>
+                                                                </div>
+                                                                <div flex>
+                                                                    <md-input-container class="md-block no-margin">
+                                                                        <label>Text Rotation</label>
+                                                                        <input ng-model="plotLine.rotation" type="number" name="plotLinerotation" required />
+                                                                    </md-input-container>
+                                                                </div>
+                                                                <div flex>
+                                                                    <md-input-container class="md-block no-margin">
+                                                                        <label>Line Thickness (px)</label>
+                                                                        <input ng-model="plotLine.width" type="number" name="plotlinewidth" required />
+                                                                    </md-input-container>
+                                                                </div>
+                                                                <div flex hud-setter margin="'-3.5% 0 0 0'">
+                                                                    <div md-color-picker
+                                                                         ng-model="plotLine.color"
+                                                                         label="Plot Band Color"
+                                                                         icon=""
+                                                                         default="#f00"
+                                                                         md-color-generic-palette="false"
+                                                                         md-color-history="false"></div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                        <div flex="15" layout layout-align="center stretch">
+                                                            <md-button hud-setter class="md-fab md-mini md-primary" aria-label="Add" type="submit" ng-click="AddPlotLine()" ng-disabled="formPlotLine.$invalid">
+                                                                <md-icon md-svg-src="{{SVG.add}}" hud-setter height-in-percent="75" width-in-percent="75"></md-icon>
+                                                            </md-button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <md-divider></md-divider>
+                                                <div flex layout layout-align="center stretch">
+                                                    <div flex layout="column" layout-align="start stretch">
+                                                        <div flex layout layout-align="center center"><span>X-Axis Plot Lines</span></div>
+                                                        <div flex="70" layout layout-align="center center" ng-if="chartInfo.plotLines.x.length==0"><span class="subtle">No X Plot Bands yet.</span></div>
+                                                        <div flex="70" layout="column" layout-align="start stretch" layout-padding class="scrollbar-macosx span-height" data-jquery-scrollbar ng-if="chartInfo.plotLines.x.length>0">
+                                                            <div flex="none" hud-setter height-in-percent="20" layout layout-align="center stretch" ng-repeat="o in chartInfo.plotLines.x">
+                                                                <div flex layout layout-align="center center"><i class="fa fa-circle" style="color:{{o.color}}"></i><span flex="5"></span><span>{{o.text}}</span></div>
+                                                                <span flex layout layout-align="center center">[{{o.value}}]</span>
+                                                                <div flex="15">
+                                                                    <md-button hud-setter class="md-fab md-mini md-primary" aria-label="Add" type="submit" ng-click="RemovePlotLine(o)" ng-disabled="steptwo.$invalid">
+                                                                        <md-icon md-svg-src="{{SVG.close}}" hud-setter height-in-percent="75" width-in-percent="75"></md-icon>
+                                                                    </md-button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <md-divider></md-divider>
+                                                    <div flex layout="column" layout-align="start stretch">
+                                                        <div flex layout layout-align="center center"><span>Y-Axis Plot Lines</span></div>
+                                                        <div flex="70" layout layout-align="center center" ng-if="chartInfo.plotLines.y.length==0"><span class="subtle">No Y Plot Bands yet.</span></div>
+                                                        <div flex="70" layout="column" layout-align="start stretch" layout-padding class="scrollbar-macosx span-height" data-jquery-scrollbar ng-if="chartInfo.plotLines.y.length>0">
+                                                            <div flex="none" hud-setter height-in-percent="20" layout layout-align="center stretch" ng-repeat="o in chartInfo.plotLines.y">
+                                                                <div flex layout layout-align="center center"><i class="fa fa-circle" style="color:{{o.color}}"></i><span flex="5"></span><span>{{o.text}}</span></div>
+                                                                <span flex layout layout-align="center center">[{{o.value}}]</span>
+                                                                <div flex="15">
+                                                                    <md-button hud-setter class="md-fab md-mini md-primary" aria-label="Add" type="submit" ng-click="RemovePlotLine(o)" ng-disabled="steptwo.$invalid">
+                                                                        <md-icon md-svg-src="{{SVG.close}}" hud-setter height-in-percent="75" width-in-percent="75"></md-icon>
+                                                                    </md-button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </md-tab-body>
+                                    </md-tab>
+                                </md-tabs>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div flex layout alyout-align="center stretch">
+                <div flex id="hcid" class="span-width"></div>
+                <hud-highchart graph-data="graphdata"></hud-highchart>
+            </div>
+        </div>
+    </div>
+    <div flex="5" layout layout-align="end center">
+        <div flex="15" layout layout-align="center stretch">
+            <md-button ng-disabled="false" ng-click="Update()" class="no-margin no-padding hud-button" hud-setter width-in-percent="100">
+                <md-icon md-svg-src="{{SVG.doneall}}"></md-icon>
+                <span>Update Your Widget!</span>
+            </md-button>
+        </div>
+    </div>
+</md-dialog>

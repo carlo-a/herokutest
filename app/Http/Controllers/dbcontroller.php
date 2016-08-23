@@ -11,7 +11,7 @@ class dbcontroller extends Controller
 {
     //
     public function getData(){
-    	$data = DB::table('restaurnts')->get();
+    	$data = DB::table('restaurants')->get();
     	echo json_encode($data);
     }
 }

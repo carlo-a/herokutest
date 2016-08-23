@@ -1,0 +1,834 @@
+<style>
+    .stoplight-column-fields{
+        height: 60px;
+        min-height: 60px;
+        max-height: 60px;
+    }
+    .stoplight-column-fields th{
+        font-size: 1.25em;
+    }
+    .hide-overflow{
+        overflow: hidden;
+    }
+</style>
+<md-dialog class="hud-create-widget" layout="column" layout-align="center stretch" layout-padding>
+    <div flex="5" layout layout-align="center stretch">
+        <span class="hud-modal-title">{{modalTitle}}</span>
+        <div flex="none" hud-setter width-in-percent="1"></div>
+        <div flex layout layout-align="start center">
+            <span class="hud-modal-subtitle">{{modalSubtitle}}</span>
+        </div>
+        <div flex="5" layout layout-align="end center">
+            <md-button ng-click="CloseModal()" aria-label="close button" class="md-icon-button" hud-setter padding="'0 0 0 0'" margin="'0 0 0 0'"><md-icon md-svg-src="{{SVG.close}}"></md-icon></md-button>
+        </div>
+    </div>
+    <div flex layout="row" layout-align="center stretch" layout-padding>
+        <div flex="none" hud-setter width-in-percent="7" layout="column" layout-align="center stretch" class="hud-wizard noselect">
+            <div flex layout="column" layout-align="center center" layout-padding ng-click="ChangeStep($index+1,$event)" ng-repeat="step in WizardSteps" ng-class="{
+                 'hud-wizard-step cursor-default':wizard.currStep<step.id,
+                 'hud-wizard-active cursor-default':wizard.currStep==step.id,
+                 'hud-wizard-done cursor-pointer':wizard.currStep>step.id,
+                 }">
+                <md-tooltip md-direction="right" class="wizard-tooltip">
+                    <span ng-if="!step.done">{{step.tooltip}}</span>
+                    <span ng-if="step.done">Clicking this will redirect you to this step and reset any changes from your current step.</span>
+                </md-tooltip>
+                <md-icon class="wizard-icon" md-svg-src="{{SVG.doneall}}" ng-if="step.done"></md-icon>
+                <md-icon class="wizard-icon" md-svg-src="{{step.icon}}" ng-if="!step.done"></md-icon>
+                <!--<span class="wizard-step"></span>-->
+                <span class="wizard-desc">{{step.desc}}</span>
+            </div>
+        </div>
+        <md-divider class="no-margin no-padding"></md-divider>
+        <div flex layout="column" layout-align="center stretch">
+            <div flex layout layout-align="center stretch">
+
+                <!-- STEP 1 -->
+                <div flex layout layout="center stretch" ng-if="wizard.currStep==1">
+                    <div flex layout layout-align="center stretch">
+                        <div flex class="scrollbar-macosx graceful-leave" hud-setter width-in-percent="100" data-jquery-scrollbar ng-if="toggleFlags[0]">
+                            <pre ng-bind="originalData|json"></pre>
+                        </div>
+                    </div>
+                    <div flex="35" layout="column" layout-align="start stretch">
+                        <form flex name="StepOne" layout="column" layout-align="center stretch" ng-submit="ValidateURL(StepOne)" layout-margin>
+                            <div flex="15" class="hud-instruction" layout-padding layout="row" layout-align="center center">
+                                <md-icon flex="10" md-svg-src="{{SVG.info}}"></md-icon>
+                                <span flex>
+                                    Palagay ng write up dito. Tapos kung masyado mahaba, okay lang na dagdagan ng container or dagdagan ng container. atm, flex=5 tong container na to. thanks mga beh.
+                                </span>
+                            </div>
+                            <div flex="none" hud-setter height-in-percent="3" layout layout-align="end stretch">
+                                <div flex="35">
+                                    <md-checkbox class="hud-advanced-checkbox" ng-model="wizard.advanced" aria-label="advanced">
+                                        Advanced Options
+                                    </md-checkbox>
+                                </div>
+                            </div>
+                            <div flex="15" layout="column" layout-align="start stretch">
+                                <div flex="5" layout layout-align="start center">
+                                    <span flex="70" class="field-title">Data Source</span>
+                                    <span flex></span>
+                                    <div flex="10" layout layout-align="center stretch">
+                                        <md-button ng-click="ToggleFlag(1)" class="hud-icon-button md-icon-button span-width">
+                                            <md-icon ng-if="!toggleFlags[1]" md-svg-src="{{SVG.helpcircle}}"></md-icon>
+                                            <md-icon ng-if="toggleFlags[1]" md-svg-src="{{SVG.closecircle}}"></md-icon>
+                                        </md-button>
+                                    </div>
+                                </div>
+                                <md-divider></md-divider>
+                                <div flex layout layout-align="center stretch" hud-setter margin="'5% 0 1% 0'">
+                                    <div flex>
+                                        <md-input-container flex class="md-block no-margin">
+                                            <label>Data Source URL</label>
+                                            <input ng-model="refreshInfo.url" name="url" required ng-change="OnChangeStepOne()">
+                                        </md-input-container>
+                                    </div>
+                                    <div flex="15" class="graceful-leave" ng-if="wizard.advanced">
+                                        <md-input-container class="md-block no-margin">
+                                            <label>Method</label>
+                                            <md-select ng-change="ResetStepOne()" ng-model="refreshInfo.method">
+                                                <md-option ng-repeat="o in ['GET','POST']" value="{{o}}">
+                                                    {{o}}
+                                                </md-option>
+                                            </md-select>
+                                        </md-input-container>
+                                    </div>
+                                </div>
+                            </div>
+                            <div flex="5" class="hud-error graceful-leave noselect" ng-if="StepOne.url.$invalid && StepOne.$submitted" layout layout-align="center center">
+                                <md-icon flex="15" md-svg-src="{{SVG.error}}"></md-icon>
+                                <span flex>Sorry, the Data Source is invalid. Can you try another?</span>
+                            </div>
+                            <div flex="5" class="hud-success graceful-leave noselect" ng-if="StepOne.url.$valid && validationHistory[0] && wizard.nextValid" layout layout-align="center center">
+                                <md-icon flex="15" md-svg-src="{{SVG.check}}"></md-icon>
+                                <span flex>Great! This is a valid data source.</span>
+                            </div>
+                            <div flex="5" class="hud-instruction" layout-padding layout="row" layout-align="center center" ng-if="StepOne.url.$valid && validationHistory[0] && wizard.advanced">
+                                <md-button flex="10" class="md-icon-button" hud-setter width-in-percent="10" height-in-percent="5" margin="'0'" padding="'0'" ng-click="ToggleFlag(0)" aria-label="show json">
+                                    <md-icon md-svg-src="{{SVG.eye}}" ng-if="!toggleFlags[0]"></md-icon>
+                                    <md-icon md-svg-src="{{SVG.noeye}}" ng-if="toggleFlags[0]"></md-icon>
+                                </md-button>
+                                <span flex>You can view your data in json by clicking here.</span>
+                            </div>
+                            <div flex="5" ng-if="!validationHistory[0]">
+                                <md-button class="hud-button no-margin no-padding" aria-label="Add" type="submit" ng-disabled="refreshInfo.url.length==0 || wizard.load" ng-if="!wizard.load" hud-setter height-in-percent="5" width-in-percent="100">
+                                    <span ng-if="!StepOne.$submitted && refreshInfo.url==''">Fill in the empty input field.</span>
+                                    <span ng-if="!StepOne.$submitted && refreshInfo.url!=''">Test your Data Source</span>
+                                    <span ng-if="StepOne.$submitted">Re-test your Data Source</span>
+                                </md-button>
+                                <md-button class="hud-button no-margin no-padding" aria-label="Add" type="submit" ng-disabled="wizard.load" ng-if="wizard.load" hud-setter height-in-percent=" 5" width-in-percent="100">
+                                    <md-icon md-svg-src="{{SVG.gear}}"></md-icon>
+                                    <span>Testing your Data Source</span>
+                                </md-button>
+                            </div>
+                            <div flex></div>
+                        </form>
+                    </div>
+                    <div flex layout="column" layout-align="start stretch">
+                        <div flex="25"></div>
+                        <div flex="15" ng-if="toggleFlags[1]" layout layout-align="start center" class="hud-help graceful-leave">
+                            <md-icon flex="15" md-svg-src="{{SVG.help}}"></md-icon>
+                            <div flex layout="column" layout-align="center start">
+                                <span><span class="hud-primary-label">Data Source URL</span> : This is the url where we can get your data.</span>
+                                <span ng-if="wizard.advanced" class="graceful-leave"><span class="hud-primary-label">Method</span> : This is the method of the ajax needed to access your webservice.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 2 -->
+                <div flex layout layout="center stretch" ng-if="wizard.currStep==2">
+                    <div flex="30"></div>
+                    <form flex name="StepTwo" layout="column" layout-align="start stretch" layout-margin>
+                        <div flex="10" class="hud-instruction" layout-padding layout="row" layout-align="center center">
+                            <md-icon flex="15" md-svg-src="{{SVG.info}}"></md-icon>
+                            <span>
+                                Palagay ng write up dito. Tapos kung masyado mahaba, okay lang na dagdagan ng container or dagdagan ng container. atm, flex=5 tong container na to. thanks mga beh.
+                            </span>
+                        </div>
+                        <div flex="5" layout layout-align="end stretch">
+                            <div flex="35">
+                                <md-checkbox class="hud-advanced-checkbox" ng-model="wizard.advanced" aria-label="advanced">
+                                    Advanced Options
+                                </md-checkbox>
+                            </div>
+                        </div>
+                        <div flex="15" layout="column" layout-align="start stretch" layout-padding>
+                            <div flex="5" layout layout-align="start center">
+                                <span flex="70" class="field-title">Refresh Interval</span>
+                                <span flex></span>
+                                <div flex="10" layout layout-align="center stretch">
+                                    <md-button ng-click="ToggleFlag(0)" class="hud-icon-button md-icon-button span-width">
+                                        <md-icon ng-if="!toggleFlags[0]" md-svg-src="{{SVG.helpcircle}}"></md-icon>
+                                        <md-icon ng-if="toggleFlags[0]" md-svg-src="{{SVG.closecircle}}"></md-icon>
+                                    </md-button>
+                                </div>
+                            </div>
+                            <md-divider></md-divider>
+                            <div flex layout layout-align="center stretch">
+                                <div flex>
+                                    <md-input-container class="md-block no-margin">
+                                        <label>Interval Unit</label>
+                                        <md-select ng-model="refreshInfo.interval.type" ng-change="OnChangeStepTwo(StepTwo)">
+                                            <md-option ng-repeat="o in ['Seconds','Minutes','Hours']" value="{{o}}">
+                                                {{o}}
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>
+                                <div flex>
+                                    <md-input-container class="md-block no-margin">
+                                        <label>Interval Value</label>
+                                        <input ng-change="OnChangeStepTwo(StepTwo)" ng-model="refreshInfo.interval.unit" name="unit" type="number" min="0" max="100" required="true">
+                                    </md-input-container>
+                                </div>
+                            </div>
+                        </div>
+                        <div flex="25" layout layout-align="center stretch">
+                            <div flex layout="column" layout-align="start stretch" layout-padding ng-if="wizard.advanced" class="graceful-leave">
+                                <div flex="5" layout layout-align="start center">
+                                    <span flex="70" class="field-title">Widget Tools</span>
+                                    <span flex></span>
+                                    <div flex="10" layout layout-align="center stretch">
+                                        <md-button ng-click="ToggleFlag(1)" class="hud-icon-button md-icon-button span-width">
+                                            <md-icon ng-if="!toggleFlags[1]" md-svg-src="{{SVG.helpcircle}}"></md-icon>
+                                            <md-icon ng-if="toggleFlags[1]" md-svg-src="{{SVG.closecircle}}"></md-icon>
+                                        </md-button>
+                                    </div>
+                                </div>
+                                <md-divider></md-divider>
+                                <div flex layout layout-align="center stretch">
+                                    <div flex>
+                                        <md-checkbox ng-model="widgetInfo.header" aria-label="Checkbox 1" ng-change="OnChangeStepTwo(StepTwo)">
+                                            Widget Header
+                                        </md-checkbox>
+                                    </div>
+                                    <div flex>
+                                        <md-checkbox ng-model="widgetInfo.hardRefresh" aria-label="Checkbox 1">
+                                            Manual Refresh Tool
+                                        </md-checkbox>
+                                    </div>
+                                </div>
+                                <div flex="5" layout layout-align="center stretch">
+                                    <md-input-container flex class="md-block no-margin graceful-leave" ng-if="widgetInfo.header">
+                                        <label>Widget Title</label>
+                                        <input ng-model="widgetInfo.name" name="name" required ng-change="OnChangeStepTwo(StepTwo)">
+                                    </md-input-container>
+                                    <div flex="10" layout layout-align="center stretch" ng-if="widgetInfo.header">
+                                        <md-button ng-click="ToggleFlag(2)" class="hud-icon-button md-icon-button span-width">
+                                            <md-icon ng-if="!toggleFlags[2]" md-svg-src="{{SVG.helpcircle}}"></md-icon>
+                                            <md-icon ng-if="toggleFlags[2]" md-svg-src="{{SVG.closecircle}}"></md-icon>
+                                        </md-button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div flex></div>
+                        <div flex="5" layout layout-align="center stretch">
+                            <div flex class="hud-success graceful-leave noselect" ng-if="steptwo.$valid" layout layout-align="center center">
+                                <md-icon flex="15" md-svg-src="{{SVG.check}}"></md-icon>
+                                <span flex>All Done! You may now proceed to the next Step!</span>
+                            </div>
+                        </div>
+                    </form>
+                    <div flex="30" layout="column" layout-align="start stretch" layout-margin>
+                        <div flex="5"></div>
+                        <div flex="10" layout alyout-align="center stretch">
+                            <div flex ng-if="toggleFlags[3] " layout layout-align="start center" class="hud-help graceful-leave">
+                                <md-icon flex="15" md-svg-src="{{SVG.help}}"></md-icon>
+                                <div flex layout="column" layout-align="center start">
+                                    <span><span class="hud-primary-label">Interval Unit</span> : Time Unit of the refresh intervals.</span>
+                                    <span class="subtle">Hours, Minuites or Seconds</span>
+                                    <span><span class="hud-primary-label">Interval Unit</span> : Value of the time unit indicated.</span>
+                                    <span class="subtle">Maximum Value: 100, Minimum Value: 1</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div flex="15" layout alyout-align="center stretch">
+                            <div flex ng-if="toggleFlags[0]" layout layout-align="start center" class="hud-help graceful-leave">
+                                <md-icon flex="15" md-svg-src="{{SVG.help}}"></md-icon>
+                                <div flex layout="column" layout-align="center start">
+                                    <span><span class="hud-primary-label">Interval Unit</span> : Time Unit of the refresh intervals.</span>
+                                    <span class="subtle">Hours, Minuites or Seconds</span>
+                                    <span><span class="hud-primary-label">Interval Unit</span> : Value of the time unit indicated.</span>
+                                    <span class="subtle">Maximum Value: 100, Minimum Value: 1</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div flex="20" layout layout-align="center stretch">
+                            <div flex ng-if="toggleFlags[1] && wizard.advanced" layout layout-align="start center" class="hud-help graceful-leave">
+                                <md-icon flex="15" md-svg-src="{{SVG.help}}"></md-icon>
+                                <div flex layout="column" layout-align="center start">
+                                    <span><span class="hud-primary-label">Widget Header</span> : This will control the header's visibility of the widget in your dashboard.</span>
+                                    <span><span class="hud-primary-label">Widget Manual Refresh</span> : This will control the Manual Refresh Tool button's visibility in your widget.</span>
+                                    <span class="subtle">Manual Refresh - this action will manually refresh the widget and get new data from your data source.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div flex="10" layout layout-align="center stretch">
+                            <div flex ng-if="toggleFlags[2] && widgetInfo.header && wizard.advanced" layout layout-align="start center" class="hud-help graceful-leave">
+                                <md-icon flex="15" md-svg-src="{{SVG.help}}"></md-icon>
+                                <div flex layout="column" layout-align="center start">
+                                    <span><span class="hud-primary-label">Widget Title</span> : This is the title of the widget in your dashboard. It is displayed in the Widget Header</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 3 -->
+                <div flex layout layout="center stretch" ng-if="wizard.currStep==3" layout-margin>
+                    <!--1st Half Division-->
+                    <div flex layout="column" layout-align="center stretch" class="graceful-leave">
+                        <!--1st in 1st Half Division-->
+                        <div flex layout="column" layout-align="start stretch">
+                            <!--MODAL HEADER -->
+                            <div flex="5" layout layout-align="start center">
+                                <span flex="40" class="field-title">Data Selection</span>
+                                <div flex></div>
+                                <div flex="none" hud-setter width-in-percent="10" layout layout-align="center center">
+                                    <md-input-container flex class="md-block no-margin no-padding" hud-setter margin="'50% 0 0 0 '">
+                                        <input max="{{originalData.length}}" placeholder="Rows" ng-change="dataSelectTable.dataSelectTable.rowpage=0" ng-model="dataSelectTable.row" type="number" min="1" />
+                                    </md-input-container>
+                                </div>
+                                <div flex="none" hud-setter width-in-percent="5" layout layout-align="center center"><span>by</span></div>
+                                <div flex="none" hud-setter width-in-percent="10" layout layout-align="center center">
+                                    <md-input-container flex class="md-block no-margin no-padding" hud-setter margin="'50% 0 0 0 '">
+                                        <input max="{{originalDataKeys.length}}" placeholder="Cols" ng-model="dataSelectTable.col" ng-change="dataSelectTable.colpage=0" type="number" min="1" />
+                                    </md-input-container>
+                                </div>
+                                <div flex="10" layout layout-align="center stretch">
+                                    <md-menu md-position-mode="target target">
+                                        <md-button ng-click="$mdOpenMenu($event)" class="hud-icon-button-5 md-icon-button span-width">
+                                            <md-icon md-menu-origin hud-setter height-in-percent="100" width-in-percent="50" md-svg-src="{{SVG.helpcircle}}"></md-icon>
+                                        </md-button>
+                                        <md-menu-content width="4" class="hud-help-md md-whiteframe-3dp" layout layout-align="center center" layout-margin>
+                                            <md-icon flex="10" md-svg-src="{{SVG.info}}"></md-icon>
+                                            <span flex>
+                                                Select the data series to be used by ticking the boxes to the left of each row. Select columns to be displayed by ticking the boxes in the table headers.
+                                            </span>
+                                        </md-menu-content>
+                                    </md-menu>
+                                </div>
+                            </div>
+                            <!--END MODAL HEADER-->
+                            <md-divider></md-divider>
+                            <div flex layout layout-align="start stretch" class="scrollbar-macosx" data-jquery-scrollbar>
+                                <div flex="none" hud-setter height-in-percent="50" class="span-width" layout="column" layout-align="start stretch">
+                                    <div flex layout layout-align="center stretch">
+                                        <!-- ROW PAGINATION -->
+                                        <div flex="none" hud-setter width-in-percent="7" layout="column" layout-align="center center">
+                                            <md-button hud-setter minwidth-in-percent="100" class="no-margin no-padding" ng-disabled="dataSelectTable.rowpage == 0" ng-click="dataSelectTable.rowpage=dataSelectTable.rowpage-1">
+                                                <md-icon md-svg-src="{{SVG.up}}"></md-icon>
+                                            </md-button>
+                                            <span layout layout-align="center center">{{dataSelectTable.rowpage+1}} / {{(originalData.length / dataSelectTable.row)|roundup}}</span>
+                                            <md-button hud-setter minwidth-in-percent="100" class="no-margin no-padding" ng-disabled="dataSelectTable.rowpage >= originalData.length/dataSelectTable.row - 1" ng-click="dataSelectTable.rowpage=dataSelectTable.rowpage+1">
+                                                <md-icon md-svg-src="{{SVG.down}}"></md-icon>
+                                            </md-button>
+                                        </div>
+                                        <div flex layout="column" layout-align="start stretch" layout-padding>
+                                            <!-- COLUMN PAGINATION -->
+                                            <div flex="none" hud-setter height-in-percent="12" layout layout-align="center stretch">
+                                                <md-button hud-setter minheight-in-percent="5" minwidth-in-percent="5" class="no-margin no-padding" ng-disabled="dataSelectTable.colpage == 0" ng-click="dataSelectTable.colpage=dataSelectTable.colpage-1">
+                                                    <md-icon md-svg-src="{{SVG.previous}}"></md-icon>
+                                                </md-button>
+                                                <span>{{dataSelectTable.colpage+1}} / {{(originalDataKeys.length / dataSelectTable.col)|roundup}}</span>
+                                                <md-button hud-setter minheight-in-percent="5" minwidth-in-percent="5" class="no-margin no-padding" ng-disabled="dataSelectTable.colpage >= originalDataKeys.length/dataSelectTable.col - 1" ng-click="dataSelectTable.colpage=dataSelectTable.colpage+1">
+                                                    <md-icon md-svg-src="{{SVG.next}}"></md-icon>
+                                                </md-button>
+                                            </div>
+                                            <!-- DATA TABLE -->
+                                            <div flex> <!-- class="scrollbar-macosx" data-jquery-scrollbar -->
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <th></th>
+                                                            <th align="center" ng-repeat="o in originalDataKeys | startFrom:dataSelectTable.colpage*dataSelectTable.col |  limitTo:dataSelectTable.col" >
+                                                                <md-tooltip class="hud-menu-tip-sm" md-direction=" top">{{o}}</md-tooltip>
+                                                                <md-checkbox ng-click="ToggleSelectedKey(o)" ng-checked="CheckSelectedKey(o)" aria-label="Checkbox 1"></md-checkbox>
+                                                                <span>{{o}}</span>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody ng-init="">
+                                                        <tr class="noselect" ng-repeat="o in originalData | startFrom:dataSelectTable.rowpage*dataSelectTable.row |  limitTo:dataSelectTable.row">
+                                                            <td hud-setter padding="'0 10px'">
+                                                                <md-checkbox class="md-primary" ng-click="ToggleSelectedData(GetIndexOf(o))" ng-checked="CheckSelectedData(GetIndexOf(o))" aria-label="Checkbox">
+                                                                </md-checkbox>
+                                                            </td>
+                                                            <td align="center" ng-repeat="key in originalDataKeys | startFrom:dataSelectTable.colpage*dataSelectTable.col |  limitTo:dataSelectTable.col" style="height:50px">{{o[key]}}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--End of 1st in 1st Half Division-->
+                        <!--2nd in 1st Half Division-->
+                        <div flex="40" layout="column" layout-align="start stretch">
+                            <!--MODAL HEADER -->
+                            <div flex="5" layout layout-align="start center">
+                                <span flex class="field-title">Stoplight Field Selection(For Stoplight Widget)</span>
+                                <div flex="10" layout layout-align="center stretch">
+                                    <md-menu md-position-mode="target target">
+                                        <md-button ng-click="$mdOpenMenu($event)" class="hud-icon-button-5 md-icon-button span-width">
+                                            <md-icon md-menu-origin hud-setter height-in-percent="100" width-in-percent="50" md-svg-src="{{SVG.helpcircle}}"></md-icon>
+                                        </md-button>
+                                        <md-menu-content width="4" class="hud-help-md md-whiteframe-3dp" layout layout-align="center center" layout-margin>
+                                            <md-icon flex="10" md-svg-src="{{SVG.info}}"></md-icon>
+                                            <span flex>
+                                               Select the columns that you want to use as a stoplight.
+                                            </span>
+                                        </md-menu-content>
+                                    </md-menu>
+                                </div>
+                            </div>
+                            <!--END MODAL HEADER-->
+                            <md-divider></md-divider>
+                            <div flex layout="column" layout-align="center center" ng-if="!(tabularInfo.rows.length > 0 && tabularInfo.columns.length > 0)">
+                                <div flex></div>
+                                <span class="subtle" flex>Stoplight fields can be selected after choosing data columns and rows.</span>
+                            </div>
+                            <div flex layout="row" layout-align="start stretch" class="scrollbar-macosx" data-jquery-scrollbar ng-if="tabularInfo.rows.length > 0 && tabularInfo.columns.length > 0">
+                                <div flex>
+                                    <table>
+                                        <thead>
+                                            <tr class="stoplight-column-fields">
+                                                <th>Column Fields</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="key in tabularInfo.columns">
+                                                <td class="stoplight-column-fields">
+                                                    <div layout="row" layout-align="start center">
+                                                        <div flex="30">
+                                                            {{key}} 
+                                                        </div>
+                                                        <div flex></div>
+                                                        <div flex="30">
+                                                        <md-tooltip md-direction="right" class="wizard-tooltip" ng-if="GetStoplightIndexOf(key, tabularInfo.stoplightInfo) == -1">
+                                                            <span> Add {{key}} as Stoplight Field </span>
+                                                        </md-tooltip>
+                                                            <md-button class="md-fab md-mini md-primary" aria-label="Use Android" ng-if="GetStoplightIndexOf(key, tabularInfo.stoplightInfo) == -1"ng-click="AddStoplightKey(key)">
+                                                              <i class="fa fa-plus"></i>
+                                                            </md-button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div flex="5"></div>
+                                <md-divider></md-divider>
+                                <div flex="5"></div>
+                                <div flex layout="column" layout-align="start center">
+                                    <table flex>
+                                        <thead>
+                                            <tr class="stoplight-column-fields">
+                                                <th>Stoplight Field</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="key in tabularInfo.stoplightInfo.columns" class="stoplight-column-fields">
+                                                <td>
+                                                    <span layout="row" layout-align="start center">
+                                                        <div flex="30">
+                                                            {{key}} 
+                                                        </div>
+                                                        <div flex></div>
+                                                        <div flex="30">
+                                                            <md-tooltip md-direction="right" class="wizard-tooltip">
+                                                                <span> Delete {{key}} as Stoplight Field </span>
+                                                            </md-tooltip>
+                                                            <md-button class="md-fab md-mini md-primary" aria-label="Use Android" ng-click="DeleteStoplightKey(key)">
+                                                              <i class="fa fa-minus"></i>
+                                                            </md-button>
+                                                        </div>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div flex ng-if="tabularInfo.stoplightInfo.columns.length == 0"></div>
+                                    <div flex ng-if="tabularInfo.stoplightInfo.columns.length == 0">
+                                        <span class="subtle"> No stoplight fields yet. Select from the column fields by clicking the "plus" button </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--End 2nd in 1st Half Division -->
+                    </div>
+                    <!--End 1st Half Division-->
+                    <md-divider></md-divider>
+                    <!--2nd Half Division-->
+                    <div flex layout="column" layout-align="center stretch" class="graceful-leave">
+                        <div flex class="scrollbar-macosx span-width" data-jquery-scrollbar layout layout-align="start stretch" ng-if="tabularInfo.columns.length > 0 && tabularInfo.rows.length > 0">
+                            <div flex id="hcid" class="span-width">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th align="center" ng-repeat="o in tabularInfo.columns" >
+                                                <md-tooltip class="hud-menu-tip-sm" md-direction=" top">{{o}}</md-tooltip>
+                                                <span>{{o}}</span>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="noselect" ng-repeat="o in selectedData">
+                                            <td align="center" ng-repeat="key in tabularInfo.columns">{{o[key]}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div flex="none" hud-setter height-in-percent="2"></div>
+                        <div flex class="scrollbar-macosx span-width" data-jquery-scrollbar layout layout-align="start stretch" ng-if="!(tabularInfo.columns.length > 0 && tabularInfo.rows.length > 0)">
+                            <div flex layout layout-align="center center"><span class="subtle">Table can be previewed after choosing data columns and rows.</span></div>
+                        </div>
+                    </div>
+                    <!--End 2nd Half Division-->
+                </div>
+
+                <!-- STEP 4 -->
+                <div flex layout layout="center stretch" ng-if="wizard.currStep==4" layout-margin>
+                    <!--FIRST HALF-->
+                    <div flex layout="column" layout-align="start stretch">
+                        <!--MODAL HEADER -->
+                        <div flex="5" layout layout-align="start center">
+                            <span flex="70" class="field-title">Stoplight Field Selection(For Stoplight Widget)</span>
+                            <span flex></span>
+                            <div flex="20" layout layout-align="center stretch">
+                                <md-menu md-position-mode="target target">
+                                    <md-button ng-click="$mdOpenMenu($event)" class="hud-icon-button-5 md-icon-button span-width">
+                                        <md-icon md-menu-origin hud-setter height-in-percent="100" width-in-percent="50" md-svg-src="{{SVG.helpcircle}}"></md-icon>
+                                    </md-button>
+                                    <md-menu-content width="4" class="hud-help-md md-whiteframe-3dp" layout layout-align="center center" layout-margin>
+                                        <md-icon flex="10" md-svg-src="{{SVG.info}}"></md-icon>
+                                        <span flex>
+                                            In this step, the user can configure the default stoplight color in the "Default" tab as well as custom configuration per stoplight column chosen.
+                                        </span>
+                                    </md-menu-content>
+                                </md-menu>
+                            </div>
+                        </div>
+                        <!--END MODAL HEADER-->
+                        <md-divider></md-divider>
+                        <md-tabs md-selected="selectedIndex" md-border-bottom md-autoselect flex ng-if="tabularInfo.stoplightInfo.columns.length > 0">
+                            <md-tab ng-repeat="o in tabularInfo.stoplightInfo.columns" label="{{o}}">
+                                <md-tab-label><span class="hud-label">{{o}}</span></md-tab-label>
+                                <md-tab-body>
+                                    <md-content hud-setter height-in-percent="100" ng-if="selectedIndex==$index">
+                                        <div flex layout layout-align="center stretch" class="scrollbar-macosx span-height" data-jquery-scrollbar layout-padding>
+                                            <div flex layout="column" layout-align="start stretch">
+                                                <div flex="5">
+                                                    <span>Default Stoplight Configuration for {{o}} field</span>
+                                                </div>
+                                                <md-divider></md-divider>
+                                                <div flex="10" layout layout-align="start stretch">
+                                                    <div flex="20" layout="row" layout-align="center center">
+                                                        <span>Default</span>
+                                                    </div>
+                                                    <div flex></div>
+                                                    <div flex>
+                                                        <div md-color-picker
+                                                             ng-model="defaultColor"
+                                                             label="Color"
+                                                             icon=""
+                                                             default="#f00"
+                                                             md-color-clear-button="false"
+                                                             md-color-generic-palette="false"
+                                                             md-color-history="false"
+                                                             ng-change="AddStoplightDefault(o, defaultColor)">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div flex="10" layout layout-align="start stretch">
+                                                    <span flex="40" layout layout-align="center center">
+                                                        <span>Stoplight Field Selection for {{o}} field</span>
+                                                    </span>
+                                                    <div flex></div>
+                                                    <div flex="10">
+                                                        <md-button class="md-fab md-mini md-primary" aria-label="Use Android" ng-click="AddStoplightInfo(o)">
+                                                            <i class="fa fa-plus"></i>
+                                                        </md-button>
+                                                    </div>
+                                                </div>
+                                                <md-divider></md-divider>
+                                                <div flex layout="column" layout-align="start stretch" ng-if="tabularInfo.stoplightInfo.mapping[GetStoplightIndexOf(o, tabularInfo.stoplightInfo)].length > 0">
+                                                    <div ng-repeat="item in tabularInfo.stoplightInfo.mapping[GetStoplightIndexOf(o, tabularInfo.stoplightInfo)] track by $index">
+                                                        <div layout="row" layout-align="start stretch">
+                                                            <div flex="40">
+                                                                <md-input-container class="md-block no-padding">
+                                                                    <label>Keyword</label>
+                                                                    <input type="text" ng-model="tabularInfo.stoplightInfo.mapping[GetStoplightIndexOf(o, tabularInfo.stoplightInfo)][$index]">
+                                                                </md-input-container>
+                                                            </div>
+                                                            <div flex="30">
+                                                                <div md-color-picker
+                                                                     ng-model="tabularInfo.stoplightInfo.color[GetStoplightIndexOf(o, tabularInfo.stoplightInfo)][$index]"
+                                                                     label="Color"
+                                                                     icon=""
+                                                                     default="#f00"
+                                                                     md-color-clear-button="false"
+                                                                     md-color-generic-palette="false"
+                                                                     md-color-history="false">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </md-content>
+                                </md-tab-body>
+                            </md-tab>
+                        </md-tabs>
+                        <div flex ayout="row" layout="column" layout-align="center center" ng-if="tabularInfo.stoplightInfo.columns.length == 0">
+                            <div flex></div>
+                            <span class="subtle" flex>
+                                You didn't select any stoplight fields. If you wish to use the stoplight feature, go to the previous step and select
+                                fields for stoplight.
+                            </span>
+
+                        </div>
+                    </div>
+                    <!-- CHART PREVIEW -->
+                    <!--SECOND HALF-->
+                    <div flex layout="column" layout-align="center stretch" class="graceful-leave">
+                        <div flex class="scrollbar-macosx span-width" data-jquery-scrollbar layout layout-align="start stretch" ng-if="tabularInfo.columns.length > 0 && tabularInfo.rows.length > 0">
+                            <div flex id="hcid" class="span-width">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th align="center" ng-repeat="o in tabularInfo.columns" >
+                                                <md-tooltip class="hud-menu-tip-sm" md-direction=" top">{{o}}</md-tooltip>
+                                                <span>{{o}}</span>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="noselect" ng-repeat="o in selectedData">
+                                            <td align="center" ng-repeat="key in tabularInfo.columns">{{o[key]}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <br>
+                                <table ng-if="tabularInfo.stoplightInfo.columns.length > 0">
+                                    <thead>
+                                        <tr>
+                                            <th align="center" ng-repeat="o in tabularInfo.columns" >
+                                                <md-tooltip class="hud-menu-tip-sm" md-direction=" top">{{o}}</md-tooltip>
+                                                <span>{{o}}</span>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="noselect" ng-repeat="o in selectedData">
+                                            <td align="center" ng-repeat="key in tabularInfo.columns">
+                                                <span ng-if="(GetStoplightIndexOf(key,tabularInfo.stoplightInfo) == -1)">
+                                                    {{o[key]}}
+                                                </span>
+                                                <span ng-if="(GetStoplightIndexOf(key,tabularInfo.stoplightInfo) > -1)">
+                                                    <i class="fa fa-circle" ng-style="CheckStoplight(o[key], GetStoplightIndexOf(key,tabularInfo.stoplightInfo), tabularInfo.stoplightInfo)" style="color: {{tabularInfo.stoplightInfo.default[key]}}"></i>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div flex class="scrollbar-macosx span-width" data-jquery-scrollbar layout layout-align="start stretch" ng-if="!(tabularInfo.columns.length > 0 && tabularInfo.rows.length > 0)">
+                            <div flex layout layout-align="center center"><span class="subtle" hud-setter padding="100">Charts can be previewed after choosing data columns and rows.</span></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- STEP 5 -->
+                <div flex layout layout="center stretch" ng-if="wizard.currStep==5" layout-margin>
+                    <!--FIRST HALF-->
+                    <div flex layout="column" layout-align="start stretch">
+                        <!--MODAL HEADER -->
+                        <div flex="5" layout layout-align="start center">
+                            <span flex="70" class="field-title">Finalize Widget</span>
+                            <span flex></span>
+                            <div flex="10" layout layout-align="center stretch">
+                                <md-menu md-position-mode="target target">
+                                    <md-button ng-click="$mdOpenMenu($event)" class="hud-icon-button-5 md-icon-button span-width">
+                                        <md-icon md-menu-origin hud-setter height-in-percent="100" width-in-percent="50" md-svg-src="{{SVG.helpcircle}}"></md-icon>
+                                    </md-button>
+                                    <md-menu-content width="4" class="hud-help-md md-whiteframe-3dp" layout layout-align="center center" layout-margin>
+                                        <md-icon flex="10" md-svg-src="{{SVG.info}}"></md-icon>
+                                        <span flex>
+                                            In this step, the user can configure the default stoplight color in the "Default" tab as well as custom configuration per stoplight column chosen.
+                                        </span>
+                                    </md-menu-content>
+                                </md-menu>
+                            </div>
+                        </div>
+                        <md-divider></md-divider>
+                        <div flex layout layout-align="center stretch">
+                            <div layout="column" layout-align="start stretch" class="scrollbar-macosx hud-review-content " data-jquery-scrollbar ng-if="wizard.currStep==5">
+                                <div flex="5" layout layout-align="start center">
+                                    <span>Components Summary</span>
+                                </div>
+                                <md-list class="span-width md-dense">
+                                    <md-divider></md-divider>
+                                    <md-list-item class="md-2-line" hud-setter height-in-percent="5">
+                                        <md-icon md-svg-src="{{SVG.gear}}"></md-icon>
+                                        <div class="md-list-item-text">
+                                            <span>Data Source URL</span>
+                                            <p> [{{refreshInfo.method}}]{{refreshInfo.url}}</p>
+                                        </div>
+                                    </md-list-item>
+                                    <md-divider></md-divider>
+                                    <md-list-item class="md-2-line" hud-setter height-in-percent="5">
+                                        <md-icon md-svg-src="{{SVG.gear}}"></md-icon>
+                                        <div class="md-list-item-text">
+                                            <h3>Refresh Interval</h3>
+                                            <p>{{refreshInfo.interval.unit}} {{refreshInfo.interval.type}} {{refreshInfo.interval.value}}</p>
+                                        </div>
+                                    </md-list-item>
+                                    <md-divider></md-divider>
+                                    <md-list-item class="md-3-line" hud-setter height-in-percent="5">
+                                        <md-icon md-svg-src="{{SVG.gear}}"></md-icon>
+                                        <div class="md-list-item-text">
+                                            <h3>Widget Tools</h3>
+                                            <p>
+                                                Hard Refresh Tool:
+                                                <span ng-if="widgetInfo.hardRefresh"> Visible </span>
+                                                <span ng-if="!widgetInfo.hardRefresh"> Hidden </span>
+                                            </p>
+                                            <p>
+                                                Widget Header:
+                                                <span ng-if="widgetInfo.header"> Visible - {{widgetInfo.name}} (Widget Title) </span>
+                                                <span ng-if="!widgetInfo.header"> Hidden </span>
+                                            </p>
+                                        </div>
+                                    </md-list-item>
+                                    <md-divider></md-divider>
+                                    <md-list-item class="md-3-line" hud-setter height-in-percent="5">
+                                        <md-icon md-svg-src="{{SVG.gear}}"></md-icon>
+                                        <div class="md-list-item-text">
+                                            <h3>Table Type</h3>
+                                            <p ng-if="tabularInfo.stoplightInfo.columns.length == 0">Table</p>
+                                            <p ng-if="tabularInfo.stoplightInfo.columns.length > 0">Stoplight</p>
+                                        </div>
+                                    </md-list-item>
+                                    <md-divider></md-divider>
+                                    <md-list-item class="md-2-line" hud-setter height-in-percent="5">
+                                        <md-icon md-svg-src="{{SVG.gear}}"></md-icon>
+                                        <div class="md-list-item-text">
+                                            <h3>Selected Columns</h3>
+                                            <p>{{StringifySelectedColumns()}}</p>
+                                        </div>
+                                    </md-list-item>
+                                    <md-divider></md-divider>
+                                    <md-list-item class="md-2-line" hud-setter height-in-percent="5" ng-if="tabularInfo.stoplightInfo.columns.length > 0">
+                                        <md-icon md-svg-src="{{SVG.gear}}"></md-icon>
+                                        <div class="md-list-item-text">
+                                            <h3>Stoplight Columns</h3>
+                                            <p>{{StringifyStoplightColumns()}}</p>
+                                        </div>
+                                    </md-list-item>
+                                    <md-divider></md-divider ng-if="tabularInfo.stoplightInfo.columns.length > 0">
+                                    <md-list-item class="md-2-line" hud-setter height-in-percent="5">
+                                        <md-icon md-svg-src="{{SVG.gear}}"></md-icon>
+                                        <div class="md-list-item-text">
+                                            <h3>Selected Rows</h3>
+                                            <p>{{StringifySelectedRows()}}</p>
+                                        </div>
+                                    </md-list-item>
+                                    <md-divider></md-divider>
+                                </md-list>
+                            </div>
+                            <md-divider></md-divider>
+                            <div flex class="scrollbar-macosx span-width" data-jquery-scrollbar layout layout-align="start stretch" ng-if="tabularInfo.columns.length > 0 && tabularInfo.rows.length > 0">
+                                <div flex id="hcid">
+                                    <table ng-if="tabularInfo.stoplightInfo.columns == 0">
+                                        <thead>
+                                            <tr>
+                                                <th align="center" ng-repeat="o in tabularInfo.columns" >
+                                                    <md-tooltip class="hud-menu-tip-sm" md-direction=" top">{{o}}</md-tooltip>
+                                                    <span>{{o}}</span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="noselect" ng-repeat="o in selectedData">
+                                                <td align="center" ng-repeat="key in tabularInfo.columns">{{o[key]}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <br>
+                                    <table ng-if="tabularInfo.stoplightInfo.columns.length > 0">
+                                        <thead>
+                                            <tr>
+                                                <th align="center" ng-repeat="o in tabularInfo.columns" >
+                                                    <md-tooltip class="hud-menu-tip-sm" md-direction=" top">{{o}}</md-tooltip>
+                                                    <span>{{o}}</span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="noselect" ng-repeat="o in selectedData">
+                                                <td align="center" ng-repeat="key in tabularInfo.columns">
+                                                    <span ng-if="(GetStoplightIndexOf(key, tabularInfo.stoplightInfo) == -1)">
+                                                        {{o[key]}}
+                                                    </span>
+                                                    <span ng-if="(GetStoplightIndexOf(key, tabularInfo.stoplightInfo) > -1)">
+                                                        <i class="fa fa-circle" ng-style="CheckStoplight(o[key], GetStoplightIndexOf(key, tabularInfo.stoplightInfo), tabularInfo.stoplightInfo)" style="color: {{tabularInfo.stoplightInfo.default[key]}}"></i>
+                                                       
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div flex="5" layout layout-align="space-between center">
+                <div flex="10" layout layout-align="center stretch">
+                    <md-button ng-click="ChangeStep(wizard.currStep-1,$event)" ng-if="wizard.currStep>1" class="no-margin no-padding hud-button" hud-setter width-in-percent="100">
+                        <md-icon md-svg-src="{{SVG.previous}}"></md-icon>
+                        <span>Previous Step</span>
+                    </md-button>
+                </div>
+                <div flex="10" layout layout-align="center stretch">
+                    <md-button ng-disabled="!wizard.nextValid" ng-click="ChangeStep(wizard.currStep+1,$event)" ng-if="wizard.currStep!=WizardSteps.length" class="no-margin no-padding hud-button" hud-setter width-in-percent="100">
+                        <span>Next Step</span>
+                        <md-icon md-svg-src="{{SVG.next}}"></md-icon>
+                    </md-button>
+
+                    <md-button ng-disabled="false" ng-click="AddWidget()" ng-if="!(wizard.currStep!=WizardSteps.length)" class="no-margin no-padding hud-button" hud-setter width-in-percent="100">
+                        <md-icon md-svg-src="{{SVG.doneall}}"></md-icon>
+                        <span>Create Your Widget!</span>
+                    </md-button>
+                </div>
+            </div>
+        </div>
+    </div>
+</md-dialog>
+
+<!--
+    //LOAD STATES
+    <div flex layout layout-align="center center" ng-if="formLoad">
+        <md-icon class="hud-loader" hud-setter height-in-percent=" 20" width-in-percent="20" md-svg-src="{{SVG.loader}}"></md-icon>
+    </div>
+
+    //advanced options
+                            <div flex="5" layout layout-align="end stretch">
+                            <div flex="35">
+                                <md-checkbox class="hud-advanced-checkbox" ng-model="wizard.advanced" aria-label="advanced">
+                                    Advanced Options
+                                </md-checkbox>
+                            </div>
+                        </div>
+     -->

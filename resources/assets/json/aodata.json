@@ -1,0 +1,2195 @@
+ {
+    "sites": [
+        {
+            "id": "2",
+            "name": "Akashi",
+            "latLng": [
+                34.6431066,
+                134.9971787
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=2",
+            "type": [
+                "PROFICY",
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "3",
+            "name": "Albany",
+            "latLng": [
+                31.5785,
+                -86.1557
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=3",
+            "type": [
+                "RTCIS",
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "4",
+            "name": "Alce Blanco",
+            "latLng": [
+                17.4797,
+                -99.227
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=4",
+            "type": [
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "5",
+            "name": "Aleksandrow",
+            "latLng": [
+                56.4,
+                38.7167
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=5",
+            "type": [
+                "PROFICY",
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "6",
+            "name": "Alexandria",
+            "latLng": [
+                31.3113,
+                -92.4451
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=6",
+            "type": [
+                "RTCIS",
+                "MAPLE"
+            ]
+        },
+        {
+            "id": "7",
+            "name": "Alicante",
+            "latLng": [
+                38.3459963,
+                -0.4906855
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=7",
+            "type": [
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "8",
+            "name": "Amiens",
+            "latLng": [
+                49.894067,
+                2.295753
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=8",
+            "type": [
+                "MAPLE",
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "9",
+            "name": "Anchieta",
+            "latLng": [
+                -20.8006667,
+                -40.644506
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=9",
+            "type": [
+                "MAPLE"
+            ]
+        },
+        {
+            "id": "10",
+            "name": "Andover",
+            "latLng": [
+                40.6584,
+                -80.137
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=10",
+            "type": [
+                "RTCIS",
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "11",
+            "name": "Athens",
+            "latLng": [
+                37.983917,
+                23.7293599
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=11",
+            "type": [
+                "PRIME"
+            ]
+        },
+        {
+            "id": "12",
+            "name": "Atlanta",
+            "latLng": [
+                33.7489954,
+                -84.3879824
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=12",
+            "type": [
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "13",
+            "name": "Auburn Claremont",
+            "latLng": [
+                44.0979,
+                -70.2312
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=13",
+            "type": [
+                "RTCIS",
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "14",
+            "name": "Augusta",
+            "latLng": [
+                33.4734978,
+                -82.0105148
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=14",
+            "type": [
+                "MAPLE",
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "15",
+            "name": "Avenel",
+            "latLng": [
+                40.5804,
+                -74.2851
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=15",
+            "type": [
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "16",
+            "name": "Baddi",
+            "latLng": [
+                30.9578258,
+                76.7913558
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=16",
+            "type": [
+                "RTCIS",
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "17",
+            "name": "Bahio",
+            "latLng": [
+                19.4316,
+                -103.094
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=17",
+            "type": [
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "18",
+            "name": "Bangkok",
+            "latLng": [
+                13.7563309,
+                100.5017651
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=18",
+            "type": [
+                "PROFICY",
+                "RTCIS",
+                "PRIME"
+            ]
+        },
+        {
+            "id": "19",
+            "name": "Barquisimeto",
+            "latLng": [
+                10.0677719,
+                -69.3473509
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=19",
+            "type": [
+                "PRIME",
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "20",
+            "name": "Beijing",
+            "latLng": [
+                39.904211,
+                116.407395
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=20",
+            "type": [
+                "MAPLE"
+            ]
+        },
+        {
+            "id": "21",
+            "name": "Belleville",
+            "latLng": [
+                44.168,
+                -77.3843
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=21",
+            "type": [
+                "RTCIS",
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "22",
+            "name": "Ben Cat",
+            "latLng": [
+                11.1383407,
+                106.6124495
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=22",
+            "type": [
+                "RTCIS",
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "23",
+            "name": "Bhiwadi",
+            "latLng": [
+                28.2088218,
+                76.8445999
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=23",
+            "type": [
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "24",
+            "name": "Binh Duong",
+            "latLng": [
+                11.3254024,
+                106.477017
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=24",
+            "type": [
+                "RTCIS",
+                "PROFICY",
+                "MAPLE"
+            ]
+        },
+        {
+            "id": "25",
+            "name": "Blois",
+            "latLng": [
+                47.5860921,
+                1.3359475
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=25",
+            "type": [
+                "RTCIS",
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "26",
+            "name": "Boryspil",
+            "latLng": [
+                50.3482,
+                30.95615
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=26",
+            "type": [
+                "PROFICY",
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "27",
+            "name": "Bournemouth",
+            "latLng": [
+                50.719164,
+                -1.880769
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=27",
+            "type": [
+                "PRIME"
+            ]
+        },
+        {
+            "id": "28",
+            "name": "Box Elder",
+            "latLng": [
+                41.5380087,
+                -113.1918021
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=28",
+            "type": [
+                "PROFICY",
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "29",
+            "name": "Brantford",
+            "latLng": [
+                43.1394,
+                -80.2644
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=29",
+            "type": [
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "30",
+            "name": "Brockville",
+            "latLng": [
+                44.6022,
+                -75.6907
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=30",
+            "type": [
+                "MAPLE",
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "31",
+            "name": "Budapest",
+            "latLng": [
+                47.497912,
+                19.040235
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=31",
+            "type": [
+                "RTCIS",
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "32",
+            "name": "Cabuyao",
+            "latLng": [
+                14.2471423,
+                121.1366715
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=32",
+            "type": [
+                "PROFICY",
+                "MAPLE",
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "33",
+            "name": "Cairo",
+            "latLng": [
+                30.0444196,
+                31.2357116
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=33",
+            "type": [
+                "PROFICY",
+                "RTCIS",
+                "PRIME"
+            ]
+        },
+        {
+            "id": "34",
+            "name": "Cape Girardeau",
+            "latLng": [
+                37.3058839,
+                -89.5181476
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=34",
+            "type": [
+                "RTCIS",
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "35",
+            "name": "Casablanca",
+            "latLng": [
+                33.5731104,
+                -7.5898434
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=35",
+            "type": [
+                "RTCIS",
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "36",
+            "name": "Cayey",
+            "latLng": [
+                18.1119051,
+                -66.166
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=36",
+            "type": [
+                "RTCIS",
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "37",
+            "name": "Chengdu",
+            "latLng": [
+                30.572816,
+                104.066801
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=37",
+            "type": [
+                "RTCIS",
+                "MAPLE"
+            ]
+        },
+        {
+            "id": "38",
+            "name": "Chonan",
+            "latLng": [
+                36.8167,
+                127.1667
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=38",
+            "type": [
+                "RTCIS",
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "41",
+            "name": "Cologne",
+            "latLng": [
+                50.937531,
+                6.9602786
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=41",
+            "type": [
+                "PROFICY",
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "42",
+            "name": "Crailsheim",
+            "latLng": [
+                49.1337354,
+                10.0633573
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=42",
+            "type": [
+                "PROFICY",
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "43",
+            "name": "Cruzeiro Do Sul",
+            "latLng": [
+                -7.6279977,
+                -72.6761487
+            ],
+            "style": {
+                "fill": "rgba(126,136,144,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=43",
+            "type": [
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "44",
+            "name": "Dallas",
+            "latLng": [
+                32.7766642,
+                -96.7969879
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=44",
+            "type": [
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "45",
+            "name": "Dammam",
+            "latLng": [
+                26.3926665,
+                49.9777136
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=45",
+            "type": [
+                "PROFICY",
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "46",
+            "name": "Dayton",
+            "latLng": [
+                39.7589478,
+                -84.1916069
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=46",
+            "type": [
+                "PRIME",
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "48",
+            "name": "Dover",
+            "latLng": [
+                39.1582,
+                -75.5244
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=48",
+            "type": [
+                "PROFICY",
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "49",
+            "name": "Dzerzhinsk",
+            "latLng": [
+                56.2440992,
+                43.4351804
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=49",
+            "type": [
+                "RTCIS",
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "50",
+            "name": "Edwardsville",
+            "latLng": [
+                38.7704,
+                -90.0506
+            ],
+            "style": {
+                "fill": "rgba(126,136,144,1)",
+                "r": 0
+            },
+            "weburl": "systemdetailview.php?id=50",
+            "type": [
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "51",
+            "name": "Euskirchen",
+            "latLng": [
+                50.6602,
+                6.7913
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=51",
+            "type": [
+                "RTCIS",
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "52",
+            "name": "Gattaticco",
+            "latLng": [
+                44.7940981,
+                10.445497
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=52",
+            "type": [
+                "MAPLE"
+            ]
+        },
+        {
+            "id": "54",
+            "name": "Gebze",
+            "latLng": [
+                40.8025157,
+                29.4397941
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=54",
+            "type": [
+                "PROFICY",
+                "RTCIS",
+                "MAPLE"
+            ]
+        },
+        {
+            "id": "55",
+            "name": "Goa",
+            "latLng": [
+                15.2993265,
+                74.123996
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=55",
+            "type": [
+                "PROFICY",
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "56",
+            "name": "Green Bay",
+            "latLng": [
+                44.519159,
+                -88.019826
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=56",
+            "type": [
+                "RTCIS",
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "57",
+            "name": "Greensboro",
+            "latLng": [
+                36.0726354,
+                -79.7919754
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=57",
+            "type": [
+                "PROFICY",
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "58",
+            "name": "Gross Gerau",
+            "latLng": [
+                49.9203655,
+                8.4847038
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=58",
+            "type": [
+                "PROFICY",
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "59",
+            "name": "Guangzhou",
+            "latLng": [
+                23.12911,
+                113.264385
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=59",
+            "type": [
+                "RTCIS",
+                "PRIME"
+            ]
+        },
+        {
+            "id": "60",
+            "name": "Guatire",
+            "latLng": [
+                10.4597466,
+                -66.5581092
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=60",
+            "type": [
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "61",
+            "name": "Gyongyos",
+            "latLng": [
+                47.7772651,
+                19.9294927
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=61",
+            "type": [
+                "PROFICY",
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "62",
+            "name": "Huangpu",
+            "latLng": [
+                23.106402,
+                113.459749
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=62",
+            "type": [
+                "PROFICY",
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "63",
+            "name": "Hub",
+            "latLng": [
+                26.8934,
+                67.0281
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=63",
+            "type": [
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "64",
+            "name": "Hunfeld",
+            "latLng": [
+                50.6726672,
+                9.7690455
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=64",
+            "type": [
+                "RTCIS",
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "65",
+            "name": "HuntValley",
+            "latLng": [
+                39.4812,
+                -76.6439
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=65",
+            "type": [
+                "RTCIS",
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "66",
+            "name": "Hyderabad",
+            "latLng": [
+                17.385044,
+                78.486671
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=66",
+            "type": [
+                "RTCIS",
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "67",
+            "name": "Ibadan",
+            "latLng": [
+                7.3775355,
+                3.9470396
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=67",
+            "type": [
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "68",
+            "name": "Iowa City",
+            "latLng": [
+                41.6611277,
+                -91.5301683
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=68",
+            "type": [
+                "RTCIS",
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "69",
+            "name": "Itatiaia",
+            "latLng": [
+                -20.4957,
+                -46.5609
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=69",
+            "type": [
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "70",
+            "name": "Jakarta",
+            "latLng": [
+                -6.2087634,
+                106.845599
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=70",
+            "type": [
+                "RTCIS",
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "71",
+            "name": "Jeddah",
+            "latLng": [
+                21.2854067,
+                39.2375507
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=71",
+            "type": [
+                "RTCIS",
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "72",
+            "name": "Johannesburg",
+            "latLng": [
+                -26.2041028,
+                28.0473051
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=72",
+            "type": [
+                "RTCIS",
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "73",
+            "name": "Kansas City",
+            "latLng": [
+                39.0997265,
+                -94.5785667
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=73",
+            "type": [
+                "RTCIS",
+                "MAPLE"
+            ]
+        },
+        {
+            "id": "74",
+            "name": "La Muda",
+            "latLng": [
+                18.3291,
+                -66.0988
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=74",
+            "type": [
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "76",
+            "name": "Lagos",
+            "latLng": [
+                6.5243793,
+                3.3792057
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=76",
+            "type": [
+                "PROFICY",
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "78",
+            "name": "Lima",
+            "latLng": [
+                40.7426,
+                -84.1052
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=78",
+            "type": [
+                "MAPLE",
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "79",
+            "name": "Lodz",
+            "latLng": [
+                51.7592485,
+                19.4559833
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=79",
+            "type": [
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "80",
+            "name": "London",
+            "latLng": [
+                51.5073509,
+                -0.1277583
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=80",
+            "type": [
+                "MAPLE",
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "81",
+            "name": "Louveira (Sao Paolo, Brazil)",
+            "latLng": [
+                -23.0867,
+                -46.9495
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=81",
+            "type": [
+                "RTCIS",
+                "PROFICY",
+                "PRIME"
+            ]
+        },
+        {
+            "id": "82",
+            "name": "Luogang",
+            "latLng": [
+                24.422939,
+                115.638235
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=82",
+            "type": [
+                "PROFICY",
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "84",
+            "name": "Manaus",
+            "latLng": [
+                -3.1190275,
+                -60.0217314
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=84",
+            "type": [
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "85",
+            "name": "Manchester",
+            "latLng": [
+                53.4807593,
+                -2.2426305
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=85",
+            "type": [
+                "RTCIS",
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "86",
+            "name": "Mandideep",
+            "latLng": [
+                23.0987029,
+                77.5050016
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=86",
+            "type": [
+                "PROFICY",
+                "MAPLE"
+            ]
+        },
+        {
+            "id": "87",
+            "name": "Mariscala",
+            "latLng": [
+                19.6262,
+                -101.1358
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=87",
+            "type": [
+                "PROFICY",
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "88",
+            "name": "Mataro",
+            "latLng": [
+                41.5381124,
+                2.4447406
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=88",
+            "type": [
+                "MAPLE"
+            ]
+        },
+        {
+            "id": "89",
+            "name": "Materiales",
+            "latLng": [
+                -12.0478,
+                -77.0622
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=89",
+            "type": [
+                "PRIME",
+                "MAPLE",
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "90",
+            "name": "Mechelen",
+            "latLng": [
+                51.0258761,
+                4.4775362
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=90",
+            "type": [
+                "RTCIS",
+                "MAPLE"
+            ]
+        },
+        {
+            "id": "91",
+            "name": "Medellin",
+            "latLng": [
+                6.236,
+                -75.5751
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=91",
+            "type": [
+                "MAPLE"
+            ]
+        },
+        {
+            "id": "92",
+            "name": "Mehoopany",
+            "latLng": [
+                41.563,
+                -76.061
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=92",
+            "type": [
+                "RTCIS",
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "93",
+            "name": "Mequinenza",
+            "latLng": [
+                41.3719971,
+                0.3007533
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=93",
+            "type": [
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "94",
+            "name": "Mexico City (SMO - San Martin Obispo)",
+            "latLng": [
+                20.6841,
+                -103.4486
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=94",
+            "type": [
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "95",
+            "name": "Montornes",
+            "latLng": [
+                41.3851,
+                -2.1734
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=95",
+            "type": [
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "96",
+            "name": "Moreno Valley",
+            "latLng": [
+                33.9424658,
+                -117.2296717
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=96",
+            "type": [
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "97",
+            "name": "Naucalpan",
+            "latLng": [
+                19.4630841,
+                -99.245302
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=97",
+            "type": [
+                "PROFICY",
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "98",
+            "name": "Nenagh",
+            "latLng": [
+                52.8642968,
+                -8.1975561
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=98",
+            "type": [
+                "RTCIS",
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "99",
+            "name": "Newbridge",
+            "latLng": [
+                53.1805,
+                -6.7959
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=99",
+            "type": [
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "100",
+            "name": "Novomoskovsk",
+            "latLng": [
+                54.0109034,
+                38.2963063
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=100",
+            "type": [
+                "PROFICY",
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "101",
+            "name": "Ordzhonikidze",
+            "latLng": [
+                47.6572805,
+                34.07859
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=101",
+            "type": [
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "102",
+            "name": "Oxnard",
+            "latLng": [
+                34.1975048,
+                -119.1770516
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=102",
+            "type": [
+                "PROFICY",
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "103",
+            "name": "Pescara",
+            "latLng": [
+                42.4617902,
+                14.2160898
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=103",
+            "type": [
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "104",
+            "name": "Phoenix",
+            "latLng": [
+                33.4483771,
+                -112.0740373
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=104",
+            "type": [
+                "RTCIS",
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "105",
+            "name": "Pilar",
+            "latLng": [
+                -34.4559059,
+                -58.908329
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=105",
+            "type": [
+                "RTCIS",
+                "MAPLE"
+            ]
+        },
+        {
+            "id": "106",
+            "name": "Pomezia",
+            "latLng": [
+                41.6693373,
+                12.5023439
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=106",
+            "type": [
+                "RTCIS",
+                "MAPLE"
+            ]
+        },
+        {
+            "id": "107",
+            "name": "Port Qasim",
+            "latLng": [
+                24.8078,
+                67.4046
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=107",
+            "type": [
+                "PROFICY",
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "108",
+            "name": "Queimados",
+            "latLng": [
+                -20.7165,
+                -43.5554
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=108",
+            "type": [
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "109",
+            "name": "Rakona",
+            "latLng": [
+                50.1042,
+                13.7317
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=109",
+            "type": [
+                "RTCIS",
+                "MAPLE"
+            ]
+        },
+        {
+            "id": "110",
+            "name": "Reading",
+            "latLng": [
+                51.4542645,
+                -0.9781303
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=110",
+            "type": [
+                "RTCIS",
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "111",
+            "name": "Rio Negro",
+            "latLng": [
+                6.144837,
+                -75.375085
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=111",
+            "type": [
+                "PRIME"
+            ]
+        },
+        {
+            "id": "112",
+            "name": "Rio de Janeiro",
+            "latLng": [
+                -22.9035,
+                -43.2096
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=112",
+            "type": [
+                "RTCIS",
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "113",
+            "name": "Riverside",
+            "latLng": [
+                39.4667,
+                -76.2333
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=113",
+            "type": [
+                "PRIME"
+            ]
+        },
+        {
+            "id": "114",
+            "name": "Rothenkirchen",
+            "latLng": [
+                50.3635305,
+                11.3179368
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=114",
+            "type": [
+                "RTCIS",
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "115",
+            "name": "Saint Louis",
+            "latLng": [
+                38.647,
+                -88.8139
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=115",
+            "type": [
+                "MAPLE",
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "116",
+            "name": "Santiago",
+            "latLng": [
+                -33.4488897,
+                -70.6692655
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=116",
+            "type": [
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "117",
+            "name": "Santiga",
+            "latLng": [
+                41.5304,
+                2.1457
+            ],
+            "style": {
+                "fill": "rgba(126,136,144,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=117",
+            "type": [
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "118",
+            "name": "Sarreguemines",
+            "latLng": [
+                49.106031,
+                7.070862
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=118",
+            "type": [
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "119",
+            "name": "Seaton Delaval",
+            "latLng": [
+                55.0711452,
+                -1.5276765
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=119",
+            "type": [
+                "PROFICY",
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "120",
+            "name": "Sekerpinar",
+            "latLng": [
+                40.860199,
+                29.388468
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=120",
+            "type": [
+                "PRIME"
+            ]
+        },
+        {
+            "id": "121",
+            "name": "Shanghai Braun",
+            "latLng": [
+                31.2304,
+                121.4737
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=121",
+            "type": [
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "122",
+            "name": "Shiga",
+            "latLng": [
+                35.0045306,
+                135.8685899
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=122",
+            "type": [
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "123",
+            "name": "Shippensburg",
+            "latLng": [
+                40.05,
+                -77.5166
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=123",
+            "type": [
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "124",
+            "name": "Singapore",
+            "latLng": [
+                1.352083,
+                103.819836
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=124",
+            "type": [
+                "PROFICY",
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "125",
+            "name": "Skelmersdale",
+            "latLng": [
+                53.5503519,
+                -2.77637
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=125",
+            "type": [
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "126",
+            "name": "Sochaczew",
+            "latLng": [
+                54.7104264,
+                20.4522144
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=126",
+            "type": [
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "127",
+            "name": "South Boston",
+            "latLng": [
+                42.3584,
+                -71.0598
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=127",
+            "type": [
+                "RTCIS",
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "128",
+            "name": "St. Petersburg",
+            "latLng": [
+                59.939,
+                30.3158
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=128",
+            "type": [
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "129",
+            "name": "Sydney",
+            "latLng": [
+                -33.8674869,
+                151.2069902
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=129",
+            "type": [
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "130",
+            "name": "Taicang",
+            "latLng": [
+                31.4554,
+                119.1064
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=130",
+            "type": [
+                "PROFICY",
+                "PRIME",
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "131",
+            "name": "Takasaki",
+            "latLng": [
+                36.3219088,
+                139.0032936
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=131",
+            "type": [
+                "MAPLE",
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "132",
+            "name": "Targowek",
+            "latLng": [
+                52.2823819,
+                21.0653678
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=132",
+            "type": [
+                "RTCIS",
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "133",
+            "name": "Tepeji",
+            "latLng": [
+                19.9001205,
+                -99.3416352
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=133",
+            "type": [
+                "RTCIS",
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "134",
+            "name": "Tianjin",
+            "latLng": [
+                39.084158,
+                117.200983
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=134",
+            "type": [
+                "RTCIS",
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "135",
+            "name": "Urlati",
+            "latLng": [
+                44.9894922,
+                26.2346216
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=135",
+            "type": [
+                "PROFICY",
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "136",
+            "name": "Vallejo",
+            "latLng": [
+                23.1202,
+                -100.5516
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=136",
+            "type": [
+                "PROFICY",
+                "RTCIS",
+                "MAPLE"
+            ]
+        },
+        {
+            "id": "137",
+            "name": "Villa Mercedes",
+            "latLng": [
+                -33.6754417,
+                -65.4580688
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=137",
+            "type": [
+                "RTCIS",
+                "PROFICY"
+            ]
+        },
+        {
+            "id": "138",
+            "name": "Worms",
+            "latLng": [
+                49.6341372,
+                8.3507182
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=138",
+            "type": [
+                "RTCIS"
+            ]
+        },
+        {
+            "id": "139",
+            "name": "Xiqing",
+            "latLng": [
+                39.141152,
+                117.008827
+            ],
+            "style": {
+                "fill": "rgba(0,141,107,1)",
+                "r": 5
+            },
+            "weburl": "systemdetailview.php?id=139",
+            "type": [
+                "PROFICY",
+                "RTCIS"
+            ]
+        }
+    ],
+    "redRegions": ""
+}

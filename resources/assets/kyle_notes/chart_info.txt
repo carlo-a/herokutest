@@ -1,0 +1,198 @@
+//All highcharts properties but not series
+chart_info{
+	general_chart_info: {
+		chart: 		{}
+		xAxis: 		{}
+		yAxis: 		{}
+
+		tooltip: 	{}
+		legend: 	{}
+		exporting: 	{}
+	}
+	type: 			String
+	/*specific charts*/
+	chart_type:				{}
+}
+
+//Chart Type
+line_family: {
+	type: 					String				'line', 'spline', 'area', 'areaspline'	// NOT PLUG N PLAY
+
+	dataLabels: {
+		enabled: 			Boolean
+		align: 				String 				'left', 'center', 'right'
+		color: 				Color
+		backgroundColor: 	Color
+		borderColor: 		Color
+		borderRadius: 		Number
+		borderWidth: 		Number
+		format: 			String 				'prefix + {y} + suffix'	// format : valuePrefix + " {y} " + valueSuffix;
+	}
+
+
+	/* DATA SET SPECIFIC */
+	dataSets: [
+		{
+			// name: 		String 				// To be handled by data_info
+			// data: 		Array of Numbers	// To be handled by data_info
+			lineWidth: 		Number				// NOT PLUG N PLAY (format to series.data)
+			dashStyle: 		String				['Solid', 'Dot', 'Dash', 'ShortDash', 'LongDash']
+			marker: {
+				fillColor: 			Color
+				lineColor: 			Color
+				lineWidth: 			Number
+				radius: 			Number 
+				symbol: 			String 				['circle', 'square', 'diamond', 'triangle', 'triangle-down']	// If to be uploaded - insert url (to follow)
+			}
+		}
+	]
+
+	/* DO NOT IMPLEMENT NOW */
+	step: 					String 				['left', 'center', 'right']
+}
+
+
+
+chart: {
+	animation: 				//Boolean
+
+	backgroundColor: 		//Color
+
+	borderColor: 			//Color
+	borderRadius: 			//Number
+	borderWidth: 			//Number
+
+	inverted: 				//Boolean	
+}
+xAxis: {
+	visible: 				//Boolean
+
+	gridLineWidth:			//Number
+	grindLineColor:			//Color
+	lineColor:				//Color 			// Y Axis
+	lineWidth: 				,//Number
+	tickColor:				,//Color
+
+	type: 					,//String			"linear", "datetime", "logarithmic"
+	allowDecimals: 			,//Boolean
+	min: 					,//Number
+	max: 					,//Number
+	reversed: 				,//Boolean
+
+	crosshair: {							// Set to false to remove
+		color: 				,//Color
+		width: 				,//Number
+		dashStyle: 			,//String 			['Solid', 'Dot', 'Dash', 'ShortDash', 'LongDash']
+	}
+
+	labels: {
+		enabled: 			,//Boolean
+		align: 				,//String
+		valuePrefix: 		,//String			// NOT PLUG N PLAY -> convert to "formatter": function() {}
+		valueSuffix:		,//String			// NOT PLUG N PLAY
+	}
+
+	plotLines: [{
+		color: 				,//Color
+		dashStyle: 			,//String 			['Solid', 'Dot', 'Dash', 'ShortDash', 'LongDash']
+		label: {
+			align: 			,//String
+			textAlign: 		,//String
+			verticalAlign: 	,//String
+			style: 			,//{}				CSS Style
+
+			text: 			,//String
+		}
+	}]
+	plotBands: [{							// Low Priority
+		from:				,//Number
+		to:					,//Number
+		color:				,//Color			// Background Color
+		label: {
+			text:			,//String
+			style :			,//{}				CSS Style
+		}
+	}]
+}
+yAxis: {
+	visible: 				Boolean
+
+	gridLineWidth:			Number
+	grindLineColor:			Color
+	lineColor:				Color 			// Y Axis
+	lineWidth: 				Number
+	tickColor:				Color
+
+	type: 					String			"linear", "datetime", "logarithmic"
+	allowDecimals: 			Boolean
+	min: 					Number
+	max: 					Number
+	reversed: 				Boolean
+
+	crosshair: {							// Set to false to remove
+		color: 				Color
+		width: 				Number
+		dashStyle: 			String 			['Solid', 'Dot', 'Dash', 'ShortDash', 'LongDash']
+	}
+
+	labels: {
+		enabled: 			Boolean
+		align: 				String
+		format: 			String			// format : valuePrefix + " {value} " + valueSuffix;
+	}
+
+	plotLines: [{							// Low Priority
+		color: 				Color
+		dashStyle: 			String 			['Solid', 'Dot', 'Dash', 'ShortDash', 'LongDash']
+		label: {
+			align: 			String
+			textAlign: 		String
+			verticalAlign: 	String
+			style: 			{}				CSS Style
+
+			text: 			String
+		}
+	}]
+	plotBands: [{							// Low Priority
+		from:				Number
+		to:					Number
+		color:				Color			// Background Color
+		label: {
+			text:			String
+			style :			{}				CSS Style
+		}
+	}]
+}
+tooltip: {
+	enabled:				,//Boolean
+	valuePrefix:			,//String
+	valueSuffix:			,//String
+	valueDecimals:			,//Number
+	backgroundColor: 		,//Color
+	borderColor: 			,//Color
+	borderRadius: 			,//Number
+	borderWidth: 			,//Number
+}
+legend: {
+	enabled:				,//Boolean
+	align:					,//String
+	floating:				,//Boolean
+	backgroundColor: 		,//Color
+	borderColor: 			,//Color
+	borderRadius: 			,//Number
+	borderWidth: 			,//Number
+}
+exporting: {
+	enabled:				,//Boolean
+	buttons: {
+		contextButtons: {
+		symbolFill:			,//Color
+		symbolSize:			,//Number
+		symbolStroke:		,//String
+		}
+	}
+}
+
+chart_type:{
+	plotOptions: {}
+}

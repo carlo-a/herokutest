@@ -1,0 +1,368 @@
+[
+  {
+    "name": "My Charts",
+    "type": "chart",
+    "chart_info": {
+        "type": [
+          "Column",
+          "Column",
+          "Column",
+          "Column",
+          "Spline",
+          "Spline"
+        ],
+        "animation": true,
+        "categories": [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul"
+        ],
+        "data": {
+          "series": [
+            {
+              "name": "HQC",
+              "data": [
+                46,
+                25,
+                41,
+                35,
+                33,
+                40,
+                85
+              ],
+              "color": ""
+            },
+            {
+              "name": "C2C",
+              "data": [
+                102,
+                51,
+                84,
+                32,
+                77,
+                101,
+                56
+              ],
+              "color": ""
+            },
+            {
+              "name": "GDA",
+              "data": [
+                67,
+                69,
+                38,
+                33,
+                44,
+                72,
+                23
+              ],
+              "color": ""
+            },
+            {
+              "name": "ADM",
+              "data": [
+                30,
+                85,
+                76,
+                29,
+                92,
+                35,
+                82
+              ],
+              "color": ""
+            },
+            {
+              "name": "COR",
+              "data": [
+                92,
+                14,
+                30,
+                34,
+                57,
+                101,
+                52
+              ],
+              "color": ""
+            },
+            {
+              "name": "ACO",
+              "data": [
+                57,
+                33,
+                74,
+                27,
+                11,
+                79,
+                14
+              ],
+              "color": ""
+            }
+          ],
+          "color": [
+            
+          ]
+        },
+        "dataInfo": {
+          "url": "resources/assets/json/rdata.php",
+          "refreshTime": 1000,
+          "dataLabel": "",
+          "dataIndices": {
+            "rows": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "columns": [
+              "Jan",
+              "Feb",
+              "Mar",
+              "Apr",
+              "May",
+              "Jun",
+              "Jul"
+            ]
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "My Heatmap",
+    "type": "chart",
+    "chart_info": {
+      "type": "Heatmap",
+      "animation": true,
+      "categories": [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Oct",
+        "Nov",
+        "Dec"
+      ],
+      "data": {
+        "series": [
+          {
+            "name": "HQC",
+            "data": [
+              53,
+              27,
+              40,
+              35,
+              32,
+              32,
+              89,
+              71,
+              47,
+              98,
+              46
+            ],
+            "color": ""
+          },
+          {
+            "name": "C2C",
+            "data": [
+              100,
+              44,
+              90,
+              38,
+              87,
+              94,
+              51,
+              43,
+              61,
+              76,
+              53
+            ],
+            "color": ""
+          },
+          {
+            "name": "GDA",
+            "data": [
+              64,
+              64,
+              42,
+              36,
+              41,
+              68,
+              24,
+              24,
+              65,
+              53,
+              45
+            ],
+            "color": ""
+          },
+          {
+            "name": "ADM",
+            "data": [
+              34,
+              85,
+              85,
+              33,
+              98,
+              45,
+              75,
+              95,
+              76,
+              32,
+              50
+            ],
+            "color": ""
+          },
+          {
+            "name": "COR",
+            "data": [
+              89,
+              16,
+              30,
+              31,
+              54,
+              105,
+              50,
+              71,
+              89,
+              96,
+              48
+            ],
+            "color": ""
+          },
+          {
+            "name": "ACO",
+            "data": [
+              54,
+              28,
+              80,
+              32,
+              18,
+              70,
+              15,
+              50,
+              102,
+              69,
+              40
+            ],
+            "color": ""
+          },
+          {
+            "name": "ECO",
+            "data": [
+              17,
+              52,
+              26,
+              35,
+              71,
+              41,
+              79,
+              21,
+              21,
+              50,
+              46
+            ],
+            "color": ""
+          },
+          {
+            "name": "ONE",
+            "data": [
+              77,
+              70,
+              70,
+              31,
+              26,
+              14,
+              39,
+              84,
+              34,
+              19,
+              38
+            ],
+            "color": ""
+          },
+          {
+            "name": "NEO",
+            "data": [
+              36,
+              85,
+              27,
+              29,
+              75,
+              82,
+              103,
+              63,
+              39,
+              96,
+              38
+            ],
+            "color": ""
+          }
+        ],
+        "color": [
+          
+        ]
+      },
+      "dataInfo": {
+        "url": "resources\/assets\/json\/rdata.php",
+        "refreshTime": 1000,
+        "dataLabel": "",
+        "dataIndices": {
+          "rows": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "columns": [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Oct",
+            "Nov",
+            "Dec"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "name": "My Table",
+    "type": "table",
+    "datasource": "resources/assets/json/rdata.php",
+    "refresh_time": 1000,
+    "data_indices": {
+      "rows": [
+        0,
+        1,
+        2
+      ],
+      "columns": [
+        "name",
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr"
+      ]
+    }
+  }
+]

@@ -1,0 +1,75 @@
+// Requires jQuery
+
+var loc = window.location;
+console.log(loc);
+var url = loc.hostname + ":" + loc.port + "/" + loc.pathname;
+var data;
+
+$.ajax({
+	method: "GET",
+	async: false,
+	url: url + "assets/data/rjson.php",
+	success: function(response){
+		data = response;
+	}
+});
+console.log(data);
+function PathFinder(){
+
+};
+
+function isTabular(data){
+	var branch = ["Object", "Array"];
+
+	if(branch.indexOf(typeOf(data)) > -1){
+		var returnValue = true;
+
+		var firstIteration = true;
+		var levelType;
+		var childKeys = [];
+		$.each(data, function(key_i, row){
+			// console.log(typeOf(levelType));
+			if(branch.indexOf(typeOf(row)) == -1){			// if row type not object or array, not tabular
+				returnValue = false;
+				return false;
+			}else if(typeOf(levelType) == "Undefined"){		// levelType = typeof firstChild
+				levelType = typeOf(row);
+				console.log(levelType);
+			}else if(levelType != typeOf(row)){				// if succeeding childs != levelType, return not tabular
+				returnValue = false;
+				return false;
+			}
+
+			if((levelType == "Object" && $.isEmptyObject(row)) ||
+				(levelType == "Array" && row.length > 0)){
+				returnValue = false;
+				return false;
+			}
+
+			$.each(row, function(key_j, cell){
+				console.log(firstIteration);
+				if(branch.indexOf(typeOf(cell)) > -1){		// If json depth greater than 3 levels, return not tabular
+					returnValue = false;
+					return false;
+				}else if(firstIteration){					// childKeys = keys of first child
+					childKeys.push(key_j);
+					firstIteration = false;
+				}else if(childKeys.indexOf(key_j) == -1){	// If keys of succeeding children are inconsistent, not tabular
+					returnValue = false;
+					return false;
+				}
+			});
+			if(!returnValue){
+				return false;
+			}
+		});
+		return returnValue;
+	}else{
+		return false;
+	}
+};
+
+function typeOf(variable){
+	var type = Object.prototype.toString.call(variable);
+	return type.substring(8, type.length - 1);
+};

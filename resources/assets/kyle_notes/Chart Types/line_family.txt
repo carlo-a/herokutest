@@ -1,0 +1,35 @@
+line_family: {
+	type: 					String				'line', 'spline', 'area', 'areaspline'	// NOT PLUG N PLAY
+
+	dataLabels: {
+		enabled: 			Boolean
+		align: 				String 				'left', 'center', 'right'
+		color: 				Color
+		backgroundColor: 	Color
+		borderColor: 		Color
+		borderRadius: 		Number
+		borderWidth: 		Number
+		format: 			String 				'prefix + {y} + suffix'	// format : valuePrefix + " {y} " + valueSuffix;
+	}
+
+
+	/* DATA SET SPECIFIC */
+	dataSets: [
+		{
+			// name: 		String 				// To be handled by data_info
+			// data: 		Array of Numbers	// To be handled by data_info
+			lineWidth: 		Number				// NOT PLUG N PLAY (format to series.data)
+			dashStyle: 		String				['Solid', 'Dot', 'Dash', 'ShortDash', 'LongDash']
+			marker: {
+				fillColor: 			Color
+				lineColor: 			Color
+				lineWidth: 			Number
+				radius: 			Number 
+				symbol: 			String 				['circle', 'square', 'diamond', 'triangle', 'triangle-down']	// If to be uploaded - insert url (to follow)
+			}
+		}
+	]
+
+	/* DO NOT IMPLEMENT NOW */
+	step: 					String 				['left', 'center', 'right']
+}

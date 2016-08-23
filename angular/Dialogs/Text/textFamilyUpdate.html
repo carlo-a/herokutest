@@ -1,0 +1,374 @@
+<md-dialog class="hud-create-widget" layout="column" layout-align="center stretch" layout-padding>
+    <div flex="5" layout layout-align="center stretch">
+        <span class="hud-modal-title">{{modalTitle}}</span>
+        <div flex="none" hud-setter width-in-percent="1"></div>
+        <div flex layout layout-align="start center">
+            <span class="hud-modal-subtitle">{{modalSubtitle}}</span>
+        </div>
+        <!--<div flex></div>-->
+        <div flex="5" layout layout-align="end center">
+            <md-button ng-click="CloseModal()" aria-label="close button" class="md-icon-button" hud-setter padding="'0 0 0 0'" margin="'0 0 0 0'"><md-icon md-svg-src="{{SVG.close}}"></md-icon></md-button>
+        </div>
+    </div>
+    <div flex layout="row" layout-align="center stretch" layout-padding>
+        <div flex="none" hud-setter width-in-percent="7" layout="column" layout-align="center stretch" class="hud-wizard noselect">
+            <div flex layout="column" layout-align="center center" layout-padding ng-click="ChangeStep($index+1,$event)" ng-repeat="step in WizardSteps" ng-class="{
+            'hud-wizard-step cursor-default':wizard.currStep<step.id,
+            'hud-wizard-active cursor-default':wizard.currStep==step.id,
+            'hud-wizard-done cursor-pointer':wizard.currStep>step.id,
+        }">
+        <md-tooltip md-direction="right" class="wizard-tooltip">
+            <span ng-if="!step.done">{{step.tooltip}}</span>
+            <span ng-if="step.done">Clicking this will redirect you to this step and reset any changes from your current step.</span>
+        </md-tooltip>
+        <md-icon class="wizard-icon" md-svg-src="{{SVG.doneall}}" ng-if="step.done"></md-icon>
+        <md-icon class="wizard-icon" md-svg-src="{{step.icon}}" ng-if="!step.done"></md-icon>
+        <!--<span class="wizard-step"></span>-->
+        <span class="wizard-desc">{{step.desc}}</span>
+    </div>
+</div>
+<md-divider class="no-margin no-padding"></md-divider>
+<div flex layout="column" layout-align="center stretch">
+    <div flex layout layout-align="center stretch">
+
+        <!-- STEP 1 -->
+        <div flex layout layout="center stretch" ng-if="wizard.currStep==1">
+            <div flex layout layout-align="center stretch">
+                <div flex class="scrollbar-macosx graceful-leave" hud-setter width-in-percent="100" data-jquery-scrollbar ng-if="toggleFlags[0]">
+                    <pre ng-bind="originalData|json"></pre>
+                </div>
+            </div>
+            <div flex="35" layout="column" layout-align="start stretch">
+                <div flex="15" class="hud-instruction" layout-padding layout="row" layout-align="center center">
+                    <md-icon flex="10" md-svg-src="{{SVG.info}}"></md-icon>
+                    <span flex>
+                        Select your data source.
+                    </span>
+                </div>
+
+                <div flex="15" layout="column" layout-align="start stretch">
+                    <div flex="5" layout layout-align="start center">
+                        <span flex="70" class="field-title">Data Source</span>
+                        <span flex></span>
+                        <div flex="10" layout layout-align="center stretch">
+                            <md-button ng-click="ToggleFlag(1)" class="hud-icon-button md-icon-button span-width">
+                                <md-icon ng-if="!toggleFlags[1]" md-svg-src="{{SVG.helpcircle}}"></md-icon>
+                                <md-icon ng-if="toggleFlags[1]" md-svg-src="{{SVG.closecircle}}"></md-icon>
+                            </md-button>
+                        </div>
+                    </div>
+                    <md-divider></md-divider>
+                    <div flex layout layout-align="center stretch" hud-setter margin="'5% 0 1% 0'">
+                        <div flex>
+                            <md-input-container class="md-block no-margin">
+                                <label>Source</label>
+                                <md-select ng-change="GetDataSource(StepOne)" ng-model="textInfo.source">
+                                    <md-option ng-repeat="o in ['URL','Static']" value="{{o}}">
+                                        {{o}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- URL  -->
+                <form ng-if="textInfo.URLFlag" flex name="StepOne" layout="column" layout-align="center stretch" ng-submit="ValidateURL(StepOne)" layout-margin>
+                    <div flex="none" hud-setter height-in-percent="3" layout layout-align="end stretch">
+                        <div flex="35">
+                            <md-checkbox class="hud-advanced-checkbox" ng-model="wizard.advanced" aria-label="advanced">
+                                Advanced Options
+                            </md-checkbox>
+                        </div>
+                    </div>
+                    <div flex="15" layout="column" layout-align="start stretch">
+                        <div flex layout layout-align="center stretch" hud-setter margin="'5% 0 1% 0'">
+                            <div flex>
+                                <md-input-container flex class="md-block no-margin">
+                                    <label>Data Source URL</label>
+                                    <input ng-model="refreshInfo.url" name="url" required ng-change="OnChangeStepOne()">
+                                </md-input-container>
+                            </div>
+                            <div flex="15" class="graceful-leave" ng-if="wizard.advanced">
+                                <md-input-container class="md-block no-margin">
+                                    <label>Method</label>
+                                    <md-select ng-change="ResetStepOne()" ng-model="refreshInfo.method">
+                                        <md-option ng-repeat="o in ['GET','POST']" value="{{o}}">
+                                            {{o}}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </div>
+                    <div flex="5" class="hud-error graceful-leave noselect" ng-if="StepOne.url.$invalid && StepOne.$submitted" layout layout-align="center center">
+                        <md-icon flex="15" md-svg-src="{{SVG.error}}"></md-icon>
+                        <span flex>Sorry, the Data Source is invalid. Can you try another?</span>
+                    </div>
+                    <div flex="5" class="hud-success graceful-leave noselect" ng-if="StepOne.url.$valid && validationHistory[0] && wizard.nextValid" layout layout-align="center center">
+                        <md-icon flex="15" md-svg-src="{{SVG.check}}"></md-icon>
+                        <span flex>Great! This is a valid data source.</span>
+                    </div>
+                    <div flex="5" class="hud-instruction" layout-padding layout="row" layout-align="center center" ng-if="StepOne.url.$valid && validationHistory[0] && wizard.advanced">
+                        <md-button flex="10" class="md-icon-button" hud-setter width-in-percent="10" height-in-percent="5" margin="'0'" padding="'0'" ng-click="ToggleFlag(0)" aria-label="show json">
+                            <md-icon md-svg-src="{{SVG.eye}}" ng-if="!toggleFlags[0]"></md-icon>
+                            <md-icon md-svg-src="{{SVG.noeye}}" ng-if="toggleFlags[0]"></md-icon>
+                        </md-button>
+                        <span flex>You can view your data in json by clicking here.</span>
+                    </div>
+                    <div flex="5" ng-if="!validationHistory[0]">
+                        <md-button class="hud-button no-margin no-padding" aria-label="Add" type="submit" ng-disabled="refreshInfo.url.length==0 || wizard.load" ng-if="!wizard.load" hud-setter height-in-percent="5" width-in-percent="100">
+                            <span ng-if="!StepOne.$submitted && refreshInfo.url==''">Fill in the empty input field.</span>
+                            <span ng-if="!StepOne.$submitted && refreshInfo.url!=''">Test your Data Source</span>
+                            <span ng-if="StepOne.$submitted">Re-test your Data Source</span>
+                        </md-button>
+                        <md-button class="hud-button no-margin no-padding" aria-label="Add" type="submit" ng-disabled="wizard.load" ng-if="wizard.load" hud-setter height-in-percent=" 5" width-in-percent="100">
+                            <md-icon md-svg-src="{{SVG.gear}}"></md-icon>
+                            <span>Testing your Data Source</span>
+                        </md-button>
+                    </div>
+                    <div flex></div>
+                </form>
+            </div>
+            <div flex layout="column" layout-align="start stretch">
+                <div flex="25"></div>
+                <div flex="15" ng-if="toggleFlags[1]" layout layout-align="start center" class="hud-help graceful-leave">
+                    <md-icon flex="15" md-svg-src="{{SVG.help}}"></md-icon>
+                    <div flex layout="column" layout-align="center start">
+                        <span><span class="hud-primary-label">Data Source</span> : This is where we can get your data.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div flex layout layout="center stretch" ng-if="wizard.currStep==2">
+            <div flex="30"></div>
+            <form ng-if="textInfo.URLFlag" flex name="StepTwo" layout="column" layout-align="start stretch" layout-margin>
+                <div flex="10" class="hud-instruction" layout-padding layout="row" layout-align="center center">
+                    <md-icon flex="15" md-svg-src="{{SVG.info}}"></md-icon>
+                    <span flex>
+                        Data Source: URL
+                    </span>
+                </div>
+                <div flex="5" layout layout-align="end stretch">
+                    <div flex="35">
+                        <md-checkbox class="hud-advanced-checkbox" ng-model="wizard.advanced" aria-label="advanced">
+                            Advanced Options
+                        </md-checkbox>
+                    </div>
+                </div>
+                <div flex="15" layout="column" layout-align="start stretch" layout-padding>
+                    <div flex="5" layout layout-align="start center">
+                        <span flex="70" class="field-title">Refresh Interval</span>
+                        <span flex></span>
+                        <div flex="10" layout layout-align="center stretch">
+                            <md-button ng-click="ToggleFlag(0)" class="hud-icon-button md-icon-button span-width">
+                                <md-icon ng-if="!toggleFlags[0]" md-svg-src="{{SVG.helpcircle}}"></md-icon>
+                                <md-icon ng-if="toggleFlags[0]" md-svg-src="{{SVG.closecircle}}"></md-icon>
+                            </md-button>
+                        </div>
+                    </div>
+                    <md-divider></md-divider>
+                    <div flex layout layout-align="center stretch">
+                        <div flex>
+                            <md-input-container class="md-block no-margin">
+                                <label>Interval Unit</label>
+                                <md-select ng-model="refreshInfo.interval.type" ng-change="OnChangeStepTwo(StepTwo)">
+                                    <md-option ng-repeat="o in ['Seconds','Minutes','Hours']" value="{{o.toLowerCase()}}">
+                                        {{o}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div flex>
+                            <md-input-container class="md-block no-margin">
+                                <label>Interval Value</label>
+                                <input ng-change="OnChangeStepTwo(StepTwo)" ng-model="refreshInfo.interval.unit" name="unit" type="number" min="0" max="100" required="true">
+                            </md-input-container>
+                        </div>
+                    </div>
+                </div>
+                <div flex="25" layout layout-align="center stretch">
+                    <div flex layout="column" layout-align="start stretch" layout-padding ng-if="wizard.advanced" class="graceful-leave">
+                        <div flex="5" layout layout-align="start center">
+                            <span flex="70" class="field-title">Widget Tools</span>
+                            <span flex></span>
+                            <div flex="10" layout layout-align="center stretch">
+                                <md-button ng-click="ToggleFlag(1)" class="hud-icon-button md-icon-button span-width">
+                                    <md-icon ng-if="!toggleFlags[1]" md-svg-src="{{SVG.helpcircle}}"></md-icon>
+                                    <md-icon ng-if="toggleFlags[1]" md-svg-src="{{SVG.closecircle}}"></md-icon>
+                                </md-button>
+                            </div>
+                        </div>
+                        <md-divider></md-divider>
+                        <div flex layout layout-align="center stretch">
+                            <div flex>
+                                <md-checkbox ng-model="widgetInfo.header" aria-label="Checkbox 1" ng-change="OnChangeStepTwo(StepTwo)">
+                                    Widget Header
+                                </md-checkbox>
+                            </div>
+                            <div flex>
+                                <md-checkbox ng-model="widgetInfo.hardRefresh" aria-label="Checkbox 1">
+                                    Manual Refresh Tool
+                                </md-checkbox>
+                            </div>
+                        </div>
+                        <div flex="5" layout layout-align="center stretch">
+                            <md-input-container flex class="md-block no-margin graceful-leave" ng-if="widgetInfo.header">
+                                <label>Widget Title</label>
+                                <input ng-model="widgetInfo.name" name="name" required ng-change="OnChangeStepTwo(StepTwo)">
+                            </md-input-container>
+                            <div flex="10" layout layout-align="center stretch" ng-if="widgetInfo.header">
+                                <md-button ng-click="ToggleFlag(2)" class="hud-icon-button md-icon-button span-width">
+                                    <md-icon ng-if="!toggleFlags[2]" md-svg-src="{{SVG.helpcircle}}"></md-icon>
+                                    <md-icon ng-if="toggleFlags[2]" md-svg-src="{{SVG.closecircle}}"></md-icon>
+                                </md-button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div flex></div>
+                <div flex="5" layout layout-align="center stretch">
+                    <div flex class="hud-success graceful-leave noselect" ng-if="StepTwo.$valid" layout layout-align="center center">
+                        <md-icon flex="15" md-svg-src="{{SVG.check}}"></md-icon>
+                        <span flex>All Done! You may now proceed to the next Step!</span>
+                    </div>
+                </div>
+            </form>
+            
+            <form ng-if="textInfo.StaticFlag" flex name="StepTwo" layout="column" layout-align="start stretch" layout-margin>
+                <div flex="10" class="hud-instruction" layout-padding layout="row" layout-align="center center">
+                    <md-icon flex="15" md-svg-src="{{SVG.info}}"></md-icon>
+                    <span flex>
+                        Data Source: Static
+                    </span>
+                </div>
+                <div ng-init="OnChangeStepTwo(StepTwo)" flex="25" layout layout-align="center stretch">
+                    <div flex layout="column" layout-align="start stretch" layout-padding class="graceful-leave">
+                        <div flex="5" layout layout-align="start center">
+                            <span flex="70" class="field-title">Widget Tools</span>
+                            <span flex></span>
+                            <div flex="10" layout layout-align="center stretch">
+                                <md-button ng-click="ToggleFlag(1)" class="hud-icon-button md-icon-button span-width">
+                                    <md-icon ng-if="!toggleFlags[1]" md-svg-src="{{SVG.helpcircle}}"></md-icon>
+                                    <md-icon ng-if="toggleFlags[1]" md-svg-src="{{SVG.closecircle}}"></md-icon>
+                                </md-button>
+                            </div>
+                        </div>
+                        <md-divider></md-divider>
+                        <div flex layout layout-align="center stretch">
+                            <div flex>
+                                <md-checkbox ng-model="widgetInfo.header" aria-label="Checkbox 1" ng-change="OnChangeStepTwo(StepTwo)">
+                                    Widget Header
+                                </md-checkbox>
+                            </div>
+                        </div>
+                        <div flex="5" layout layout-align="center stretch">
+                            <md-input-container flex class="md-block no-margin graceful-leave" ng-if="widgetInfo.header">
+                                <label>Widget Title</label>
+                                <input ng-model="widgetInfo.name" name="name" required ng-change="OnChangeStepTwo(StepTwo)">
+                            </md-input-container>
+                            <div flex="10" layout layout-align="center stretch" ng-if="widgetInfo.header">
+                                <md-button ng-click="ToggleFlag(2)" class="hud-icon-button md-icon-button span-width">
+                                    <md-icon ng-if="!toggleFlags[2]" md-svg-src="{{SVG.helpcircle}}"></md-icon>
+                                    <md-icon ng-if="toggleFlags[2]" md-svg-src="{{SVG.closecircle}}"></md-icon>
+                                </md-button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div flex="5" layout layout-align="center stretch">
+                    <div flex class="hud-success graceful-leave noselect" ng-if="StepTwo.$valid" layout layout-align="center center">
+                        <md-icon flex="15" md-svg-src="{{SVG.check}}"></md-icon>
+                        <span flex>All Done! You may now proceed to the next Step!</span>
+                    </div>
+                </div>
+            </form>
+
+            <div flex="30" layout="column" layout-align="start stretch" layout-margin>
+                <div flex="5"></div>
+                <div flex="10" layout alyout-align="center stretch">
+                    <div flex ng-if="toggleFlags[3] " layout layout-align="start center" class="hud-help graceful-leave">
+                        <md-icon flex="15" md-svg-src="{{SVG.help}}"></md-icon>
+                        <div flex layout="column" layout-align="center start">
+                            <span><span class="hud-primary-label">Interval Unit</span> : Time Unit of the refresh intervals.</span>
+                            <span class="subtle">Hours, Minuites or Seconds</span>
+                            <span><span class="hud-primary-label">Interval Value</span> : Value of the time unit indicated.</span>
+                            <span class="subtle">Maximum Value: 100, Minimum Value: 1</span>
+                        </div>
+                    </div>
+                </div>
+                <div flex="15" layout alyout-align="center stretch">
+                    <div flex ng-if="toggleFlags[0]" layout layout-align="start center" class="hud-help graceful-leave">
+                        <md-icon flex="15" md-svg-src="{{SVG.help}}"></md-icon>
+                        <div flex layout="column" layout-align="center start">
+                            <span><span class="hud-primary-label">Interval Unit</span> : Time Unit of the refresh intervals.</span>
+                            <span class="subtle">Hours, Minuites or Seconds</span>
+                            <span><span class="hud-primary-label">Interval Unit</span> : Value of the time unit indicated.</span>
+                            <span class="subtle">Maximum Value: 100, Minimum Value: 1</span>
+                        </div>
+                    </div>
+                </div>
+                <div flex="20" layout layout-align="center stretch">
+                    <div flex ng-if="toggleFlags[1] && wizard.advanced" layout layout-align="start center" class="hud-help graceful-leave">
+                        <md-icon flex="15" md-svg-src="{{SVG.help}}"></md-icon>
+                        <div flex layout="column" layout-align="center start">
+                            <span><span class="hud-primary-label">Widget Header</span> : This will control the header's visibility of the widget in your dashboard.</span>
+                            <span><span class="hud-primary-label">Widget Manual Refresh</span> : This will control the Manual Refresh Tool button's visibility in your widget.</span>
+                            <span class="subtle">Manual Refresh - this action will manually refresh the widget and get new data from your data source.</span>
+                        </div>
+                    </div>
+                </div>
+                <div flex="10" layout layout-align="center stretch">
+                    <div flex ng-if="toggleFlags[2] && widgetInfo.header && wizard.advanced" layout layout-align="start center" class="hud-help graceful-leave">
+                        <md-icon flex="15" md-svg-src="{{SVG.help}}"></md-icon>
+                        <div flex layout="column" layout-align="center start">
+                            <span><span class="hud-primary-label">Widget Title</span> : This is the title of the widget in your dashboard. It is displayed in the Widget Header</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div ng-init="addSummernote()" flex layout layout="center stretch" ng-if="wizard.currStep==3" layout-margin>
+            <div flex="50" layout="column" layout-align="start stretch">
+                <md-content class="scrollbar-macosx" data-jquery-scrollbar layout-padding flex>
+                    <div ng-init="init()" id="text_editor" flex></div>
+                </md-content>
+                <md-divider></md-divider>
+                <div flex="5" class="scrollbar-macosx span-width" data-jquery-scrollbar layout layout-align="center stretch">
+                    <md-button ng-click="previewSummernote()" class="no-margin hud-button" hud-setter layout layout-align="center stretch">
+                        <span>Click to preview text.</span>
+                    </md-button>
+                </div>
+            </div>
+            <!-- CHART PREVIEW -->
+            <div flex class="padding-sm" layout="column" layout-align="center stretch">
+                <div id="previewText" flex class="scrollbar-macosx span-width span-height wordwrap" data-jquery-scrollbar layout layout-align="start stretch">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div flex="5" layout layout-align="space-between center">
+        <div flex="10" layout layout-align="center stretch">
+            <md-button ng-click="ChangeStep(wizard.currStep-1,$event)" ng-if="wizard.currStep>1" class="no-margin no-padding hud-button" hud-setter width-in-percent="100">
+                <md-icon md-svg-src="{{SVG.previous}}"></md-icon>
+                <span>Previous Step</span>
+            </md-button>
+        </div>
+        <div flex="10" layout layout-align="center stretch">
+            <md-button ng-disabled="!wizard.nextValid" ng-click="ChangeStep(wizard.currStep+1,$event)" ng-if="wizard.currStep!=WizardSteps.length" class="no-margin no-padding hud-button" hud-setter width-in-percent="100">
+                <span>Next Step</span>
+                <md-icon md-svg-src="{{SVG.next}}"></md-icon>
+            </md-button>
+            <md-button ng-disabled="false" ng-click="AddWidget()" ng-if="!(wizard.currStep!=WizardSteps.length)" class="no-margin no-padding hud-button" hud-setter width-in-percent="100">
+                <md-icon md-svg-src="{{SVG.doneall}}"></md-icon>
+                <span>Create Your Widget!</span>
+            </md-button>
+        </div>
+    </div>
+</div>
+</div>
+</md-dialog>
